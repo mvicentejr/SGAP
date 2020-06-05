@@ -9,6 +9,65 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">SGAP</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <!--Cadastros-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cadastros
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Clientes</a>
+                            <a class="dropdown-item" href="#">Fornecedores</a>
+                            <a class="dropdown-item" href="{{route('funcionarios.index')}}">Funcionários</a>
+                            <a class="dropdown-item" href="#">Produtos</a>
+                        </div>
+                    </li>
+                    <!--Movimentos-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Movimentos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Compras</a>
+                            <a class="dropdown-item" href="#">Vendas</a>
+                            <a class="dropdown-item" href="">Pagamentos</a>
+                            <a class="dropdown-item" href="#">Recebimentos</a>
+                            <a class="dropdown-item" href="#">Situação Clientes</a>
+                        </div>
+                    </li>
+                    <!--Relatórios-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Relatórios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Clientes</a>
+                          <a class="dropdown-item" href="#">Fornecedores</a>
+                          <a class="dropdown-item" href="">Funcionários</a>
+                          <a class="dropdown-item" href="#">Produtos</a>
+                          <a class="dropdown-item" href="#">Compras</a>
+                          <a class="dropdown-item" href="#">Vendas</a>
+                          <a class="dropdown-item" href="">Pagamentos</a>
+                          <a class="dropdown-item" href="#">Recebimentos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre</span></a>
+                    </li>
+                      </ul>
+                  </div>
+              </nav>
+        </header>
         <div class="jumbotron">
             <div class="container">
                 <h1><center>Sistema de Gestão de AutoPeças</center></h1>

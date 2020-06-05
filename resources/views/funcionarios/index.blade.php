@@ -14,7 +14,8 @@
 <br>
 <div class="table-responsive">
     <table class="table table-striped table-hover">
-    <tr class="table-active">
+    <thead class="thead-dark">
+    <tr>
         <th>ID</th>
         <th>Cargo</th>
         <th>Data de Cadastro</th>

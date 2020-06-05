@@ -1,13 +1,10 @@
 @extends('layout')
 @section('content')
-<div class="col-lg-6 margin-tb">
-    <div class="pull-right">
-        <h2><center>Mostrar Funcionário<center></h2>
-    </div>
+<div class="pull-right">
+    <h2><center>Mostrar Funcionário<center></h2>
 </div>
-<br><br>
-    <div class="row">
-        <div class="col-lg-6 margin-tb">
+<div class="jumbotron">
+    <div class="col-lg-6 margin-tb">
             <div class="field">
                 <strong>ID: </strong> {{$funcionario->id}}
             </div>
@@ -49,12 +46,22 @@
                 <strong>Cônjuge: </strong> {{$funcionario->conjuge}}
             </div>
             <div class="field">
-                <strong>Rua: </strong> {{$funcionario->cep->rua}}
+                <strong>CEP: </strong> {{$funcionario->cep}}
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-8">
+                        <strong>Rua: </strong> {{$funcionario->rua}}
+                    </div>
+                    <div class="col">
+                        <strong>Número: </strong> {{$funcionario->numero}}
+                    </div>
+                </div>
             </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>Número: </strong> {{$funcionario->cep->numero}}
+                        <strong>Bairro: </strong> {{$funcionario->bairro}}
                     </div>
                     <div class="col">
                         <strong>Complemento: </strong> {{$funcionario->complemento}}
@@ -64,20 +71,10 @@
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>Bairro: </strong> {{$funcionario->cep->bairro}}
+                        <strong>Cidade: </strong> {{$funcionario->cidade}}
                     </div>
                     <div class="col">
-                        <strong>CEP: </strong> {{$funcionario->cep->codigo}}
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="form-row">
-                    <div class="col-6">
-                        <strong>Cidade: </strong> {{$funcionario->cep->cidade}}
-                    </div>
-                    <div class="col">
-                        <strong>Estado: </strong> {{$funcionario->cep->uf}}
+                        <strong>Estado: </strong> {{$funcionario->uf}}
                     </div>
                 </div>
             </div>

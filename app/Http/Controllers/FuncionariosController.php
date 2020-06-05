@@ -47,14 +47,14 @@ class FuncionariosController extends Controller
         $request->validate([
             'cargo' => 'required',
             'nome' => 'required',
-            'cpf' => 'required | numeric',
-            'rg' => 'required | numeric',
+            'cpf' => 'required',
+            'rg' => 'required',
             'oemissor' => 'required | max:3',
             'genero' => 'required',
             'estcivil' => 'required',
             'datanasc' => 'required',
             'cep' => 'required',
-            'numero' => 'required | numeric',
+            'numero' => 'required',
             'fone1' => 'required',
             'email' => 'required'
         ]);
@@ -73,7 +73,6 @@ class FuncionariosController extends Controller
     public function show(Funcionario $funcionario)
     {
         $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
-        $funcionario->cep = Cep::findOrFail($funcionario->cep);
         return view('funcionarios.show', compact('funcionario'));
     }
 
@@ -107,14 +106,14 @@ class FuncionariosController extends Controller
         $request->validate([
             'cargo' => 'required',
             'nome' => 'required',
-            'cpf' => 'required | numeric',
-            'rg' => 'required | numeric',
+            'cpf' => 'required',
+            'rg' => 'required',
             'oemissor' => 'required | max:3',
             'genero' => 'required',
             'estcivil' => 'required',
             'datanasc' => 'required',
             'cep' => 'required',
-            'numero' => 'required | numeric',
+            'numero' => 'required',
             'fone1' => 'required',
             'email' => 'required'
         ]);

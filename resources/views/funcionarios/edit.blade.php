@@ -1,12 +1,9 @@
 @extends('layout')
 @section('content')
-<div class="col-lg-6 margin-tb">
-    <div class="pull-right">
-        <h2><center>Editar Funcionário<center></h2>
-    </div>
+<div class="pull-right">
+    <h2><center>Editar Funcionário<center></h2>
 </div>
-<br><br>
-<div class="row">
+<div class="jumbotron">
     <div class="col-lg-6 margin-tb">
         <form class="form" action="{{ route('funcionarios.update', $funcionario->id) }}" method="POST">
         @csrf
@@ -43,7 +40,7 @@
         <div class="field">
             <strong>CPF: </strong>
             <div class="control">
-                <input type="text" class="input" name="cpf" value="{{$funcionario->cpf}}">
+                <input type="text" class="input" name="cpf" value="{{$funcionario->cpf}}" required pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$">
             </div>
         </div>
         <div class="form-row">
@@ -124,20 +121,20 @@
             <div class="col">
                 <strong>Telefone 1: </strong>
                 <div class="control">
-                    <input type="text" class="input" name="fone1" value="{{$funcionario->fone1}}">
+                    <input type="text" class="input" name="fone1" value="{{$funcionario->fone1}}" required pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
                 </div>
             </div>
             <div class="col">
                 <strong>Telefone 2: </strong>
                 <div class="control">
-                    <input type="text" class="input" name="fone2" value="{{$funcionario->fone2}}">
+                    <input type="text" class="input" name="fone2" value="{{$funcionario->fone2}}" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
                 </div>
             </div>
         </div>
         <div class="field">
             <strong>Email: </strong>
             <div class="control">
-                <input type="text" class="input" name="email" value="{{$funcionario->email}}">
+                <input type="email" class="input" name="email" value="{{$funcionario->email}}">
             </div>
         </div>
         <div class="field">
@@ -148,7 +145,6 @@
         </div>
         <br><br>
         <input type="submit" class="button btn-success" value="Gravar">
-        <input type="reset" class="button btn-secondary" value="Limpar">
         <a class="btn btn-warning" href="{{route('funcionarios.index')}}">Voltar</a>
     </form>
     </div>

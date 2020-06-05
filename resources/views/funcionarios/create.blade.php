@@ -1,12 +1,9 @@
 @extends('layout')
 @section('content')
-<div class="col-lg-6 margin-tb">
-    <div class="pull-right">
-        <h2><center>Cadastrar Novo Funcionário<center></h2>
-    </div>
+<div class="pull-right">
+    <h2><center>Cadastrar Novo Funcionário<center></h2>
 </div>
-<br><br>
-<div class="row">
+<div class="jumbotron">
     <div class="col-lg-6 margin-tb">
         <form class="form" action="/funcionarios" method="POST">
         @csrf
@@ -36,14 +33,14 @@
             <div class="field">
                 <strong>CPF: </strong>
                 <div class="control">
-                    <input type="text" class="input" name="cpf">
+                    <input type="text" class="input" name="cpf" required pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$" placeholder="888.888.888-88">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
                     <strong>RG: </strong>
                     <div class="control">
-                        <input type="text" class="input" name="rg">
+                        <input type="text" class="input" name="rg" placeholder="88.888.888-8">
                     </div>
                 </div>
                 <div class="col-3">
@@ -116,20 +113,20 @@
                 <div class="col">
                     <strong>Telefone 1: </strong>
                     <div class="control">
-                        <input type="text" class="input" name="fone1">
+                        <input type="text" class="input" name="fone1" required placeholder="(88) 88888-8888" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
                     </div>
                 </div>
                 <div class="col">
                     <strong>Telefone 2: </strong>
                     <div class="control">
-                        <input type="text" class="input" name="fone2">
+                        <input type="text" class="input" name="fone2" placeholder="(88) 88888-8888" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
                     </div>
                 </div>
             </div>
             <div class="field">
                 <strong>Email: </strong>
                 <div class="control">
-                    <input type="text" class="input" name="email">
+                    <input type="email" class="input" name="email">
                 </div>
             </div>
             <div class="field">
