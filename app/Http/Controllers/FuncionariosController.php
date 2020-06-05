@@ -32,8 +32,7 @@ class FuncionariosController extends Controller
         $cargos = Cargo::orderby('id')->get();
         $generos = ['Feminino', 'Masculino'];
         $estados = ['Solteiro', 'Casado', 'Separado', 'Amasiado', 'Viuvo'];
-        $ceps = Cep::orderby('codigo')->get();
-        return view('funcionarios.create', compact('cargos', 'generos', 'estados', 'ceps'));
+        return view('funcionarios.create', compact('cargos', 'generos', 'estados'));
     }
 
     /**
@@ -54,7 +53,11 @@ class FuncionariosController extends Controller
             'estcivil' => 'required',
             'datanasc' => 'required',
             'cep' => 'required',
+            'rua' => 'required',
             'numero' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required | max:2',
             'fone1' => 'required',
             'email' => 'required'
         ]);
@@ -85,13 +88,11 @@ class FuncionariosController extends Controller
     public function edit(Funcionario $funcionario)
     {
         $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
-        $funcionario->cep = Cep::findOrFail($funcionario->cep);
 
         $cargos = Cargo::orderby('id')->get();
         $generos = ['Feminino', 'Masculino'];
         $estados = ['Solteiro', 'Casado', 'Separado', 'Amasiado', 'Viuvo'];
-        $ceps = Cep::orderby('codigo')->get();
-        return view('funcionarios.edit', compact('funcionario', 'cargos', 'generos', 'estados', 'ceps'));
+        return view('funcionarios.edit', compact('funcionario', 'cargos', 'generos', 'estados'));
     }
 
     /**
@@ -113,7 +114,11 @@ class FuncionariosController extends Controller
             'estcivil' => 'required',
             'datanasc' => 'required',
             'cep' => 'required',
+            'rua' => 'required',
             'numero' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required | max:2',
             'fone1' => 'required',
             'email' => 'required'
         ]);

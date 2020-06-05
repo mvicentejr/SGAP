@@ -7,15 +7,17 @@
     <div class="col-lg-6 margin-tb">
         <form class="form" action="/funcionarios" method="POST">
         @csrf
-            <div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="estcivil"><strong>Cargo: </strong></label>
-                  <select class="custom-select mr-sm-2" id="cargo" name="cargo">
-                        <option selected></option>
-                    @foreach ($cargos as $cargo)
-                        <option value="{{$cargo->id}}">{{$cargo->descricao}}</option>
-                    @endforeach
-                  </select>
+            <div class="field">
+                <div class="form-row align-items-center">
+                    <div class="col-4">
+                    <label class="mr-sm-2" for="cargo"><strong>Cargo: </strong></label>
+                    <select class="custom-select mr-sm-2" id="cargo" name="cargo">
+                            <option selected></option>
+                        @foreach ($cargos as $cargo)
+                            <option value="{{$cargo->id}}">{{$cargo->descricao}}</option>
+                        @endforeach
+                    </select>
+                    </div>
                 </div>
             </div>
             <div class="field">
@@ -31,51 +33,65 @@
                 </div>
             </div>
             <div class="field">
-                <strong>CPF: </strong>
-                <div class="control">
-                    <input type="text" class="input" name="cpf" required pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$" placeholder="888.888.888-88">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col">
-                    <strong>RG: </strong>
-                    <div class="control">
-                        <input type="text" class="input" name="rg" placeholder="88.888.888-8">
-                    </div>
-                </div>
-                <div class="col-3">
-                    <strong>Órgão Emissor: </strong>
-                    <div class="control">
-                        <input type="text" class="input" name="oemissor">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>CPF: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="cpf" required pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$" placeholder="888.888.888-88">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="field">
-                <strong>Data de Nascimento: </strong>
-                <div class="control">
-                    <input type="date" class="input" name="datanasc">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>RG: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="rg" placeholder="88.888.888-8">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <strong>Órgão Emissor: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="oemissor">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="genero"><strong>Gênero: </strong></label>
-                  <select class="custom-select mr-sm-2" id="genero" name="genero">
-                    <option selected></option>
-                    @foreach ($generos as $genero)
-                        <option value="{{$genero}}">{{$genero}}</option>
-                    @endforeach
-                  </select>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-4">
+                    <strong>Data de Nascimento: </strong>
+                    <div class="control">
+                        <input type="date" class="input" name="datanasc">
+                    </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="estcivil"><strong>Estado Civil: </strong></label>
-                  <select class="custom-select mr-sm-2" id="estcivil" name="estcivil">
-                    <option selected></option>
-                    @foreach ($estados as $estado)
-                        <option value="{{$estado}}">{{$estado}}</option>
-                    @endforeach
-                  </select>
+            <div class="field">
+                <div class="form-row align-items-center">
+                    <div class="col-4">
+                    <label class="mr-sm-2" for="genero"><strong>Gênero: </strong></label>
+                    <select class="custom-select mr-sm-2" id="genero" name="genero">
+                        <option selected></option>
+                        @foreach ($generos as $genero)
+                            <option value="{{$genero}}">{{$genero}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-row align-items-center">
+                    <div class="col-4">
+                    <label class="mr-sm-2" for="estcivil"><strong>Estado Civil: </strong></label>
+                    <select class="custom-select mr-sm-2" id="estcivil" name="estcivil">
+                        <option selected></option>
+                        @foreach ($estados as $estado)
+                            <option value="{{$estado}}">{{$estado}}</option>
+                        @endforeach
+                    </select>
+                    </div>
                 </div>
             </div>
             <div class="field">
@@ -84,42 +100,77 @@
                     <input type="text" class="input" name="conjuge">
                 </div>
             </div>
-            <div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="cep"><strong>CEP: </strong></label>
-                  <select class="custom-select mr-sm-2" id="cep" name="cep">
-                    <option selected></option>
-                    @foreach ($ceps as $cep)
-                        <option value="{{$cep->id}}">{{$cep->codigo}} - {{$cep->rua}} - {{$cep->bairro}} - {{$cep->cidade}} - {{$cep->uf}}</option>
-                    @endforeach
-                  </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3">
-                    <strong>Número: </strong>
-                    <div class="control">
-                        <input type="text" class="input" name="numero">
-                    </div>
-                </div>
-                <div class="col">
-                    <strong>Complemento: </strong>
-                    <div class="control">
-                        <input type="text" class="input" name="complemento">
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-4">
+                        <strong>CEP: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="cep" id="cep">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col">
-                    <strong>Telefone 1: </strong>
-                    <div class="control">
-                        <input type="text" class="input" name="fone1" required placeholder="(88) 88888-8888" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
+            <div class="field">
+                <div class="form-row">
+                    <div class="col">
+                        <strong>Rua: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="rua" id="rua">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <strong>Número: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="numero">
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <strong>Telefone 2: </strong>
-                    <div class="control">
-                        <input type="text" class="input" name="fone2" placeholder="(88) 88888-8888" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>Bairro: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="bairro" id="bairro">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <strong>Complemento: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="complemento">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col">
+                        <strong>Cidade: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="cidade" id="cidade">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <strong>Estado: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="uf" id="uf">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col">
+                        <strong>Telefone 1: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="fone1" required placeholder="(88) 88888-8888" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <strong>Telefone 2: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="fone2" placeholder="(88) 88888-8888" pattern="\([0-9]{2}\)[\s][0-9]{4,6}-[0-9]{3,4}">
+                        </div>
                     </div>
                 </div>
             </div>

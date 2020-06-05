@@ -18,8 +18,4 @@ class Funcionario extends Model
         return $this->belongsTo('App\Cargo');
     }
 
-    public function cep()
-    {
-        return $this->belongsTo('App\Cep');
-    }
 }
