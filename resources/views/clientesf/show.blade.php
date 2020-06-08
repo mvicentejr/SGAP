@@ -1,101 +1,104 @@
 @extends('layout')
 @section('content')
 <div class="pull-right">
-    <h2 class="text-center">Mostrar Funcionário</h2>
+    <h2 class="text-center">Mostrar Cliente</h2>
 </div>
 <div class="jumbotron">
     <div class="col-lg-6 margin-tb">
             <div class="field">
-                <strong>ID: </strong> {{$funcionario->id}}
+                <strong>ID: </strong> {{$cliente->id}}
             </div>
             <div class="field">
-                <strong>Data de Cadastro: </strong> {{date('d/m/Y H:i', strtotime($funcionario->datacadastro))}}
+                <strong>Tipo: </strong> {{$cliente->tipo->descricao}}
             </div>
             <div class="field">
-                <strong>Cargo: </strong> {{$funcionario->cargo->descricao}}
+                <strong>Data de Cadastro: </strong> {{date('d/m/Y H:i', strtotime($cliente->datacadastro))}}
             </div>
             <div class="field">
-                <strong>Nome: </strong> {{$funcionario->nome}}
+                <strong>Status: </strong> {{$cliente->status->descricao}}
             </div>
             <div class="field">
-                <strong>Apelido: </strong> {{$funcionario->apelido}}
+                <strong>Nome: </strong> {{$cliente->nome}}
             </div>
             <div class="field">
-                <strong>CPF: </strong> {{$funcionario->cpf}}
+                <strong>Apelido: </strong> {{$cliente->apelido}}
+            </div>
+            <div class="field">
+                <strong>CPF: </strong> {{$cliente->cpf}}
             </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>RG: </strong> {{$funcionario->rg}}
+                        <strong>RG: </strong> {{$cliente->rg}}
                     </div>
                     <div class="col">
-                        <strong>Orgão Emissor: </strong> {{$funcionario->oemissor}}
+                        <strong>Orgão Emissor: </strong> {{$cliente->oemissor}}
                     </div>
                 </div>
             </div>
             <div class="field">
-                <strong>Data de Nascimento: </strong> {{date('d/m/Y', strtotime($funcionario->datanasc))}}
+                <strong>Data de Nascimento: </strong> {{date('d/m/Y', strtotime($cliente->datanasc))}}
             </div>
             <div class="field">
-                <strong>Gênero: </strong> {{$funcionario->genero}}
+                <strong>Gênero: </strong> {{$cliente->genero}}
             </div>
             <div class="field">
-                <strong>Estado Civil: </strong> {{$funcionario->estcivil}}
+                <strong>Estado Civil: </strong> {{$cliente->estcivil}}
             </div>
             <div class="field">
-                <strong>Cônjuge: </strong> {{$funcionario->conjuge}}
+                <strong>Cônjuge: </strong> {{$cliente->conjuge}}
             </div>
             <div class="field">
-                <strong>CEP: </strong> {{$funcionario->cep}}
+                <strong>CEP: </strong> {{$cliente->cep}}
             </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-8">
-                        <strong>Rua: </strong> {{$funcionario->rua}}
+                        <strong>Rua: </strong> {{$cliente->rua}}
                     </div>
                     <div class="col">
-                        <strong>Número: </strong> {{$funcionario->numero}}
+                        <strong>Número: </strong> {{$cliente->numero}}
                     </div>
                 </div>
             </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>Bairro: </strong> {{$funcionario->bairro}}
+                        <strong>Bairro: </strong> {{$cliente->bairro}}
                     </div>
                     <div class="col">
-                        <strong>Complemento: </strong> {{$funcionario->complemento}}
+                        <strong>Complemento: </strong> {{$cliente->complemento}}
                     </div>
                 </div>
             </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>Cidade: </strong> {{$funcionario->cidade}}
+                        <strong>Cidade: </strong> {{$cliente->cidade}}
                     </div>
                     <div class="col">
-                        <strong>Estado: </strong> {{$funcionario->uf}}
+                        <strong>Estado: </strong> {{$cliente->uf}}
                     </div>
                 </div>
             </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>Telefone 1: </strong> {{$funcionario->fone1}}
+                        <strong>Telefone 1: </strong> {{$cliente->fone1}}
                     </div>
                     <div class="col">
-                        <strong>Telefone 2: </strong> {{$funcionario->fone2}}
+                        <strong>Telefone 2: </strong> {{$cliente->fone2}}
                     </div>
                 </div>
             </div>
             <div class="field">
-                <strong>Email: </strong> {{$funcionario->email}}
+                <strong>Email: </strong> {{$cliente->email}}
             </div>
             <div class="field">
-                <strong>Observações: </strong> {{$funcionario->observacao}}
+                <strong>Observações: </strong> {{$cliente->observacao}}
             </div>
             <br>
-            <a class="btn btn-warning" href="{{route('funcionarios.index')}}">Voltar</a>
+            <a class="btn btn-warning" href="{{route('clientesf.index')}}">Voltar</a>
         </div>
     </div>
 

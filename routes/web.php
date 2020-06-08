@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CepsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +18,8 @@ Route::get('/', function () {
 });
 
 Route::resource('funcionarios', 'funcionariosController');
-Route::resource('ceps', 'cepsController');
+Route::resource('clientesf', 'clientesfController');
+Route::resource('clientesj', 'clientesjController');
+
+
+

@@ -1,20 +1,24 @@
 @extends('layout')
 @section('content')
 <div class="pull-right">
-    <h2 class="text-center">Cadastrar Novo Funcionário</h2>
+    <h2 class="text-center">Cadastrar Novo Cliente</h2>
 </div>
 <div class="jumbotron">
     <div class="col-lg-6 margin-tb">
-        <form class="form" action="/funcionarios" method="POST">
+        <form class="form" action="/clientesf" method="POST">
         @csrf
+            <div class="field">
+                <strong>Tipo: </strong> Pessoa Física
+                <input type="hidden" name="tipo" value="1">
+            </div>
             <div class="field">
                 <div class="form-row align-items-center">
                     <div class="col-4">
-                    <label class="mr-sm-2" for="cargo"><strong>Cargo: </strong></label>
-                    <select class="custom-select mr-sm-2" id="cargo" name="cargo">
+                    <label class="mr-sm-2" for="status"><strong>Status: </strong></label>
+                    <select class="custom-select mr-sm-2" id="status" name="status">
                             <option selected></option>
-                        @foreach ($cargos as $cargo)
-                            <option value="{{$cargo->id}}">{{$cargo->descricao}}</option>
+                        @foreach ($status as $stat)
+                            <option value="{{$stat->id}}">{{$stat->descricao}}</option>
                         @endforeach
                     </select>
                     </div>
@@ -189,7 +193,7 @@
             <br><br>
             <input type="submit" class="button btn-success" value="Gravar">
             <input type="reset" class="button btn-secondary" value="Limpar">
-            <a class="btn btn-warning" href="{{route('funcionarios.index')}}">Voltar</a>
+            <a class="btn btn-warning" href="{{route('clientesf.index')}}">Voltar</a>
         </form>
     </div>
 </div>

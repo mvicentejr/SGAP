@@ -10,6 +10,7 @@ class Funcionario extends Model
                         'datanasc', 'genero', 'estcivil', 'conjuge', 'cep', 'rua', 'numero', 'bairro',
                         'complemento', 'cidade', 'uf', 'fone1', 'fone2', 'email', 'observacao'];
 
+    protected $table = 'funcionarios';
 
     public $timestamps = false;
 

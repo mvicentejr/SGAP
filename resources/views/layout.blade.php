@@ -92,8 +92,8 @@
                             Cadastros
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Pessoa Física</a>
-                            <a class="dropdown-item" href="#">Pessoa Jurídica</a>
+                            <a class="dropdown-item" href="{{route('clientesf.index')}}">Pessoa Física</a>
+                            <a class="dropdown-item" href="{{route('clientesj.index')}}">Pessoa Jurídica</a>
                             <a class="dropdown-item" href="#">Fornecedor</a>
                             <a class="dropdown-item" href="{{route('funcionarios.index')}}">Funcionário</a>
                             <a class="dropdown-item" href="#">Produto</a>
@@ -137,7 +137,7 @@
         </header>
         <div class="jumbotron">
             <div class="container">
-                <h1><center>Sistema de Gestão de AutoPeças</center></h1>
+                <h1 class="text-center">Sistema de Gestão de AutoPeças</h1>
             </div>
             <br><br>
             @yield('content')
@@ -145,8 +145,8 @@
     </body>
     <footer>
         <?php date_default_timezone_set('America/Sao_Paulo') ?>
-        <center>Desenvolvido por Marcelo Jr -
-        {{strftime('%d-%m-%Y %H:%M', (strtotime('now')))}}</center>
+        <p class="text-center">Desenvolvido por Marcelo Jr -
+        {{strftime('%d-%m-%Y %H:%M', (strtotime('now')))}}</p>
         <br>
     </footer>
 
@@ -155,6 +155,7 @@
         var button = $(event.relatedTarget)
         var func_id = button.data('id')
         var modal = $(this)
+
 
         modal.find('.modal-body #func_id').val(cat_id);
       })

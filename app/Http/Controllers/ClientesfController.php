@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Funcionario;
-use App\Cargo;
-use App\Cep;
+use App\Cliente;
+use App\StatusCliente;
+use App\TipoCliente;
+use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 
-class FuncionariosController extends Controller
+class ClientesfController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,10 @@ class FuncionariosController extends Controller
      */
     public function index()
     {
-        $funcionarios = Funcionario::orderby('id')->get();
-        foreach ($funcionarios as $funcionario)
-            $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
-        return view('funcionarios.index', compact('funcionarios'));
+        $clientes = Cliente::query()->where('tipo','=',1)->select(['*'])->orderBy('id')->get();
+        foreach ($clientes as $cliente)
+            $cliente->status = StatusCliente::findOrFail($cliente->status);
+        return view('clientesf.index', ['clientes' => $clientes]);
     }
 
     /**
@@ -29,10 +30,10 @@ class FuncionariosController extends Controller
      */
     public function create()
     {
-        $cargos = Cargo::orderby('id')->get();
+        $status = StatusCliente::orderby('id')->get();
         $generos = ['Feminino', 'Masculino'];
         $estados = ['Solteiro', 'Casado', 'Separado', 'Amasiado', 'Viuvo'];
-        return view('funcionarios.create', compact('cargos', 'generos', 'estados'));
+        return view('clientesf.create', ['status' => $status, 'generos' => $generos, 'estados'=> $estados]);
     }
 
     /**
@@ -44,7 +45,7 @@ class FuncionariosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cargo' => 'required',
+            'status' => 'required',
             'nome' => 'required',
             'cpf' => 'required',
             'rg' => 'required',
@@ -62,9 +63,9 @@ class FuncionariosController extends Controller
             'email' => 'required'
         ]);
 
-        Funcionario::create($request->all());
+        Cliente::create($request->all());
 
-        return redirect()->route('funcionarios.index')->with('success', 'Funcionário cadastrado com sucesso!');
+        return redirect()->route('clientesf.index')->with('success', 'Cliente cadastrado com sucesso!');
     }
 
     /**
@@ -73,10 +74,12 @@ class FuncionariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Funcionario $funcionario)
+    public function show(int $clientef)
     {
-        $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
-        return view('funcionarios.show', compact('funcionario'));
+        $cliente = Cliente::findorFail($clientef);
+        $cliente->tipo = TipoCliente::findOrFail($cliente->tipo);
+        $cliente->status = StatusCliente::findOrFail($cliente->status);
+        return view('clientesf.show', ['cliente' => $cliente]);
     }
 
     /**
@@ -85,14 +88,17 @@ class FuncionariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Funcionario $funcionario)
+    public function edit(int $clientef)
     {
-        $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
+        $cliente = Cliente::findorFail($clientef);
+        $cliente->tipo = TipoCliente::findOrFail($cliente->tipo);
+        $cliente->status = StatusCliente::findorFail($cliente->status);
 
-        $cargos = Cargo::orderby('id')->get();
+        $situacao = StatusCliente::orderby('id')->get();
         $generos = ['Feminino', 'Masculino'];
         $estados = ['Solteiro', 'Casado', 'Separado', 'Amasiado', 'Viuvo'];
-        return view('funcionarios.edit', compact('funcionario', 'cargos', 'generos', 'estados'));
+
+        return view('clientesf.edit', ['cliente' => $cliente, 'situacao' => $situacao, 'generos' => $generos, 'estados'=> $estados]);
     }
 
     /**
@@ -102,10 +108,10 @@ class FuncionariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Funcionario $funcionario)
+    public function update(Request $request, Cliente $cliente)
     {
         $request->validate([
-            'cargo' => 'required',
+            'status' => 'required',
             'nome' => 'required',
             'cpf' => 'required',
             'rg' => 'required',
@@ -123,11 +129,11 @@ class FuncionariosController extends Controller
             'email' => 'required'
         ]);
 
-        $funcionario->update($request->all());
+        $cliente->update($request->all());
 
         $nome = $request->input('nome');
 
-        return redirect()->route('funcionarios.index')->with('success', 'Funcionário '. $nome .' atualizado com sucesso!');
+        return redirect()->route('clientesf.index')->with('success', 'Cliente '. $nome .' atualizado com sucesso!');
     }
 
     /**
@@ -136,10 +142,10 @@ class FuncionariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $funcionario)
+    public function destroy(int $clientef)
     {
-        $funcionario = Funcionario::findorFail($funcionario);
-        $funcionario->delete();
-        return redirect()->route('funcionarios.index')->with('success', 'Funcionário removido com sucesso!');
+        $cliente = Cliente::findorFail($clientef);
+        $cliente->delete();
+        return redirect()->route('clientesf.index')->with('success', 'Cliente removido com sucesso!');
     }
 }
