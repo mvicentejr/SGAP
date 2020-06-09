@@ -19,4 +19,9 @@ class Funcionario extends Model
         return $this->belongsTo('App\Cargo');
     }
 
+    public function vendas()
+    {
+        return $this->hasMany('App\Vendas');
+    }
+
 }

@@ -23,5 +23,7 @@ Route::resource('clientesj', 'clientesjController');
 Route::resource('fornecedores', 'fornecedoresController');
 Route::resource('produtos', 'produtosController');
 
+Route::resource('estoque', 'estoqueController');
+
 
 

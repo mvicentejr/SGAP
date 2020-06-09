@@ -45,7 +45,6 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        dd(request()->all());
         $request->validate([
             'codoriginal' => 'required',
             'codfabrica' => 'required',
@@ -84,9 +83,16 @@ class ProdutosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $produto)
     {
-        //
+        $produto = Produto::findorFail($produto);
+        $produto->marca = Marca::findOrFail($produto->marca);
+        $produto->montadora = Montadora::findorFail($produto->montadora);
+
+        $marcas = Marca::orderby('id')->get();
+        $montadoras = Montadora::orderby('id')->get();
+
+        return view('produtos.edit', ['produto' => $produto, 'marcas' => $marcas, 'montadoras' => $montadoras]);
     }
 
     /**
@@ -96,9 +102,29 @@ class ProdutosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $produto)
     {
-        //
+        $produto = Produto::findorFail($produto);
+
+        $request->validate([
+            'codoriginal' => 'required',
+            'codfabrica' => 'required',
+            'descricao' => 'required',
+            'aplicacao' => 'required',
+            'marca' => 'required',
+            'montadora' => 'required',
+            'unidade' => 'required',
+            'ncmsh' => 'required | numeric',
+            'cst' => 'required | numeric',
+            'cfop' => 'required | numeric',
+        ]);
+
+        $produto->update($request->all());
+
+        $desc = $request->input('descricao');
+
+        return redirect()->route('produtos.index')->with('success', 'Produto '. $desc .' atualizado com sucesso!');
+
     }
 
     /**

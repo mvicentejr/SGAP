@@ -26,4 +26,8 @@ class Cliente extends Model
         return $this->belongsTo('App\StatusCliente');
     }
 
+    public function vendas()
+    {
+        return $this->hasMany('App\Vendas');
+    }
 }

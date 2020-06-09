@@ -25,4 +25,9 @@ class Produto extends Model
     {
         return $this->belongsTo('App\Montadora');
     }
+
+    public function itens()
+    {
+        return $this->hasMany('App\ItensVenda');
+    }
 }

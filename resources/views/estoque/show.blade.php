@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="pull-right">
-    <h2 class="text-center">Mostrar Produto</h2>
+    <h2 class="text-center">Estoque - Mostrar Produto</h2>
 </div>
 <div class="jumbotron">
     <div class="col-lg-6 margin-tb">
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <br>
-            <a class="btn btn-warning" href="{{route('produtos.index')}}">Voltar</a>
+            <a class="btn btn-warning" href="{{route('estoque.index')}}">Voltar</a>
         </div>
     </div>
 

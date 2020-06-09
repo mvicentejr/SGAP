@@ -7,6 +7,9 @@
     <div class="col-lg-6 margin-tb">
         <form class="form" action="/produtos" method="POST">
         @csrf
+            <div class="pull-right">
+                <h5>Dados Gerais: </h5>
+            </div>
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
@@ -73,88 +76,22 @@
             </div>
             <div class="field">
                 <div class="form-row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <strong>NCM/SH: </strong>
                         <div class="control">
-                            <input type="text" class="input" name="ncmsh" placeholder="88888888">
+                            <input type="text" class="input" name="ncmsh" maxlength="8" placeholder="88888888">
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <strong>CST: </strong>
                         <div class="control">
-                            <input type="text" class="input" name="cst" placeholder="88">
+                            <input type="text" class="input" name="cst" maxlength="2" placeholder="88">
                         </div>
                     </div>
                     <div class="col-3">
                         <strong>CFOP: </strong>
                         <div class="control">
-                            <input type="text" class="input" name="cfop" placeholder="8888">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="form-row">
-                    <div class="col-4">
-                        <strong>Custo Produto: </strong>
-                        <div class="control">
-                            <input type="text" class="input" name="custo" id="custo" onkeyup="calculaCusto()">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <strong>Despesas (%): </strong>
-                        <div class="control">
-                            <input type="text" class="input" name="despesa" id="despesa" onkeyup="calculaCusto()">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <strong>ICMS (%): </strong>
-                        <div class="control">
-                            <input type="text" class="input" name="icms" id="icms" onkeyup="calculaCusto()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="form-row">
-                    <div class="col-4">
-                        <strong>Custo Total: </strong>
-                        <div class="control">
-                            <input type="text" class="input" name="ctotal" id="ctotal" disabled value="">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <strong>Lucro (%): </strong>
-                        <div class="control">
-                            <input type="text" class="input" name="perlucro" id="perlucro" onkeyup="calculaTotal()">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <strong>Valor de Venda: </strong>
-                        <div class="control">
-                            <input type="text" class="input" name="valorvenda" id="valorvenda" disabled value="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="form-row">
-                    <div class="col-4">
-                        <strong>Estoque: </strong>
-                        <div class="control">
-                            <input type="number" class="input" name="estoque">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <strong>Estoque Mínimo: </strong>
-                        <div class="control">
-                            <input type="number" class="input" name="eminimo">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <strong>Estoque Máximo: </strong>
-                        <div class="control">
-                            <input type="number" class="input" name="emaximo">
+                            <input type="text" class="input" name="cfop" maxlength="4" placeholder="8888">
                         </div>
                     </div>
                 </div>
@@ -178,37 +115,5 @@
         </ul>
     </div>
     @endif
-
-    <hr>
-
-    <script>
-        let custo = document.getElementById('custo');
-        let despesa = document.getElementById('despesa');
-        let icms = document.getElementById('icms');
-        let ctotal = document.getElementById('ctotal');
-        let perlucro = document.getElementById('perlucro');
-        let valorvenda = document.getElementById('valorvenda');
-
-        function calculaCusto(){
-            ctotal.value = 0;
-            if(custo.value && despesa.value && icms.value){
-                ctotal.value = (parseFloat(custo.value) +
-                            (parseFloat(custo.value) * (parseFloat(despesa.value) / 100) +
-                            (parseFloat(custo.value)*parseFloat(icms.value)/100))).toFixed(2);
-            }
-
-        }
-
-        function calculaTotal(){
-            valorvenda.value = 0;
-            if(perlucro.value){
-                valorvenda.value = (parseFloat(custo.value) +
-                            (parseFloat(custo.value) * (parseFloat(despesa.value) / 100) +
-                            (parseFloat(custo.value) * parseFloat(icms.value) / 100)) *
-                            (1 + (parseFloat(perlucro.value) / 100))).toFixed(2);
-            }
-
-        }
-    </script>
 
 @endsection
