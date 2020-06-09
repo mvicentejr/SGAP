@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<h2><center>Listar Clientes - Pessoa Jurídica</center></h2>
+<h2 class="text-center">Listar Clientes - Pessoa Jurídica</h2>
 <br><br>
 <form action="/clientesj/create">
     <div class="field">
@@ -16,23 +16,21 @@
     <thead class="thead-dark">
     <tr>
         <th>ID</th>
-        <th>Data de Cadastro</th>
         <th>Status</th>
         <th>Razão Social</th>
         <th>Nome Fantasia</th>
-        <th>Telefone 1</th>
-        <th>Telefone 2</th>
+        <th>Telefone</th>
+        <th>Email</th>
         <th>Ações</th>
     </tr>
     @foreach ($clientes as $cliente)
         <tr>
             <td>{{$cliente->id}}</td>
-            <td>{{date('d/m/Y', strtotime($cliente->datacadastro))}}</td>
             <td>{{$cliente->status->descricao}}</td>
             <td>{{$cliente->nome}}</td>
             <td>{{$cliente->apelido}}</td>
             <td>{{$cliente->fone1}}</td>
-            <td>{{$cliente->fone2}}</td>
+            <td>{{$cliente->email}}</td>
             <td>
                 <a class="btn btn-secondary" href="{{ route('clientesj.show', $cliente->id) }}">Mostrar</a>
                 <a class="btn btn-success" href="{{ route('clientesj.edit', $cliente->id) }}">Editar</a>
@@ -79,28 +77,12 @@
     </table>
 </div>
 
-<br>
-<br>
+<br><br>
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
     <p>{{$message}}</p>
 </div>
 @endif
-
-<!-- Modal -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="TituloModalCentralizado">Excluir Cliente</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <!-- inserir o form -->
-       </div>
-    </div>
-</div>
 
 @endsection

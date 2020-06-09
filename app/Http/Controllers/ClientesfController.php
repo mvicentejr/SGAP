@@ -108,8 +108,10 @@ class ClientesfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, int $clientef)
     {
+        $cliente = Cliente::findorFail($clientef);
+
         $request->validate([
             'status' => 'required',
             'nome' => 'required',

@@ -94,9 +94,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('clientesf.index')}}">Pessoa Física</a>
                             <a class="dropdown-item" href="{{route('clientesj.index')}}">Pessoa Jurídica</a>
-                            <a class="dropdown-item" href="#">Fornecedor</a>
+                            <a class="dropdown-item" href="{{route('fornecedores.index')}}">Fornecedor</a>
                             <a class="dropdown-item" href="{{route('funcionarios.index')}}">Funcionário</a>
-                            <a class="dropdown-item" href="#">Produto</a>
+                            <a class="dropdown-item" href="{{route('produtos.index')}}">Produto</a>
                         </div>
                     </li>
                     <!--Movimentos-->
@@ -107,6 +107,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Compra</a>
                             <a class="dropdown-item" href="#">Venda</a>
+                            <a class="dropdown-item" href="">Estoque</a>
                             <a class="dropdown-item" href="">Pagamento</a>
                             <a class="dropdown-item" href="#">Recebimento</a>
                             <a class="dropdown-item" href="#">Bloquear Cliente</a>

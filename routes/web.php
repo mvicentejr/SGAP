@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::resource('funcionarios', 'funcionariosController');
 Route::resource('clientesf', 'clientesfController');
 Route::resource('clientesj', 'clientesjController');
+Route::resource('fornecedores', 'fornecedoresController');
+Route::resource('produtos', 'produtosController');
 
 
 

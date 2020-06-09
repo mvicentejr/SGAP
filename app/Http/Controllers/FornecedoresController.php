@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Cliente;
-use App\StatusCliente;
-use App\TipoCliente;
+use App\Fornecedor;
 use Illuminate\Http\Request;
 
-class ClientesjController extends Controller
+class FornecedoresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,8 @@ class ClientesjController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::query()->where('tipo','=',2)->select(['*'])->orderBy('id')->get();
-        foreach ($clientes as $cliente)
-            $cliente->status = StatusCliente::findOrFail($cliente->status);
-        return view('clientesj.index', ['clientes' => $clientes]);
+        $fornecedores = Fornecedor::orderby('id')->get();
+        return view('fornecedores.index', ['fornecedores' => $fornecedores]);
     }
 
     /**
@@ -29,8 +25,7 @@ class ClientesjController extends Controller
      */
     public function create()
     {
-        $status = StatusCliente::orderby('id')->get();
-        return view('clientesj.create', ['status' => $status ]);
+        return view('fornecedores.create');
     }
 
     /**
@@ -42,7 +37,6 @@ class ClientesjController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'status' => 'required',
             'nome' => 'required',
             'cnpj' => 'required',
             'ie' => 'required',
@@ -56,9 +50,9 @@ class ClientesjController extends Controller
             'email' => 'required'
         ]);
 
-        Cliente::create($request->all());
+        Fornecedor::create($request->all());
 
-        return redirect()->route('clientesj.index')->with('success', 'Cliente cadastrado com sucesso!');
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor cadastrado com sucesso!');
     }
 
     /**
@@ -67,12 +61,10 @@ class ClientesjController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $clientej)
+    public function show(int $fornecedor)
     {
-        $cliente = Cliente::findorFail($clientej);
-        $cliente->tipo = TipoCliente::findOrFail($cliente->tipo);
-        $cliente->status = StatusCliente::findOrFail($cliente->status);
-        return view('clientesj.show', ['cliente' => $cliente]);
+        $fornecedor = Fornecedor::findorFail($fornecedor);
+        return view('fornecedores.show', ['fornecedor' => $fornecedor]);
     }
 
     /**
@@ -81,15 +73,11 @@ class ClientesjController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $clientej)
+    public function edit(int $fornecedor)
     {
-        $cliente = Cliente::findorFail($clientej);
-        $cliente->tipo = TipoCliente::findOrFail($cliente->tipo);
-        $cliente->status = StatusCliente::findorFail($cliente->status);
+        $fornecedor = Fornecedor::findorFail($fornecedor);
 
-        $situacao = StatusCliente::orderby('id')->get();
-
-        return view('clientesj.edit', ['cliente' => $cliente, 'situacao' => $situacao]);
+        return view('fornecedores.edit', ['fornecedor' => $fornecedor]);
     }
 
     /**
@@ -99,12 +87,11 @@ class ClientesjController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $clientej)
+    public function update(Request $request, int $fornecedor)
     {
-        $cliente = Cliente::findorFail($clientej);
+        $fornecedor = Fornecedor::findorFail($fornecedor);
 
         $request->validate([
-            'status' => 'required',
             'nome' => 'required',
             'cnpj' => 'required',
             'ie' => 'required',
@@ -118,11 +105,11 @@ class ClientesjController extends Controller
             'email' => 'required'
         ]);
 
-        $cliente->update($request->all());
+        $fornecedor->update($request->all());
 
         $nome = $request->input('nome');
 
-        return redirect()->route('clientesj.index')->with('success', 'Cliente '. $nome .' atualizado com sucesso!');
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor '. $nome .' atualizado com sucesso!');
     }
 
     /**
@@ -131,10 +118,10 @@ class ClientesjController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $clientej)
+    public function destroy(int $fornecedor)
     {
-        $cliente = Cliente::findorFail($clientej);
-        $cliente->delete();
-        return redirect()->route('clientesj.index')->with('success', 'Cliente removido com sucesso!');
+        $fornecedor = Fornecedor::findorFail($fornecedor);
+        $fornecedor->delete();
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor removido com sucesso!');
     }
 }
