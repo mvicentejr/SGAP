@@ -24,6 +24,6 @@ Route::resource('fornecedores', 'fornecedoresController');
 Route::resource('produtos', 'produtosController');
 
 Route::resource('estoque', 'estoqueController');
-
-
-
+Route::resource('compras', 'comprasController');
+Route::resource('itenscompras', 'itensComprasController');
+Route::resource('pagamentos', 'pagamentosController');

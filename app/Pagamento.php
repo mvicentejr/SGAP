@@ -4,19 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Recebimento extends Model
+class Pagamento extends Model
 {
-    protected $fillable = ['id', 'venda', 'tipopag', 'parcela', 'totalparc', 'valor', 'status',
+    protected $fillable = ['id', 'compra', 'tipopag', 'parcela', 'totalparc', 'valor', 'status',
                         'vencimento', 'pagamento'];
 
-    protected $table = 'recebimentos';
+    protected $table = 'pagamentos';
 
 
     public $timestamps = false;
 
-    public function venda()
+    public function compra()
     {
-        return $this->belongsTo('App\Venda');
+        return $this->belongsTo('App\Compra');
     }
 
     public function tipopag()
