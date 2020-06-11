@@ -6,7 +6,7 @@
 <form action="/clientesf/create">
     <div class="field">
         <div class="control">
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-success">Adicionar</button>
         </div>
     </div>
 </form>
@@ -33,7 +33,7 @@
             <td>{{$cliente->email}}</td>
             <td>
                 <a class="btn btn-secondary" href="{{ route('clientesf.show', $cliente->id) }}">Mostrar</a>
-                <a class="btn btn-success" href="{{ route('clientesf.edit', $cliente->id) }}">Editar</a>
+                <a class="btn btn-primary" href="{{ route('clientesf.edit', $cliente->id) }}">Editar</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$cliente->id}}">
                     Remover
                 </button>

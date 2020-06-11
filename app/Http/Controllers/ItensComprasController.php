@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Compra;
+use App\ItensCompra;
+use App\Produto;
 use Illuminate\Http\Request;
 
 class ItensComprasController extends Controller
@@ -34,7 +37,34 @@ class ItensComprasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'compra' => 'required',
+            'produto' => 'required',
+            'quantidade' => 'required | numeric',
+            'itemvalor' => 'required | numeric',
+            'itemtotal' => 'required | numeric',
+        ]);
+
+         $insert = [
+            'compra_id' => $request->compra,
+            'produto_id' => $request->produto,
+            'quantidade' => $request->quantidade,
+            'itemvalor' => $request->itemvalor,
+            'itemtotal' => $request->itemtotal
+        ];
+        ItensCompra::create($insert);
+
+        $produto = Produto::findOrFail($request->produto);
+        $compra = Compra::findOrFail($request->compra);
+        $produto->estoque += $request->quantidade;
+        $produto->custo = $request->itemvalor;
+        $produto->ultcompra = $compra->datacompra;
+        $produto->update();
+        $compra->total += $request->itemtotal;
+        $compra->total = round($compra->total,2);
+        $compra->update();
+
+        return redirect()->route('compras.edit', $compra->id)->with('success', 'Produto adicionado com sucesso!');
     }
 
     /**
@@ -54,9 +84,17 @@ class ItensComprasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $item)
     {
-        //
+        $item = ItensCompra::findorFail($item);
+
+        $produtos = Produto::orderby('descricao')->get();
+
+        $compra = Compra::findOrFail($item->compra->id);
+        $compra->total -= $item->itemtotal;
+        $compra->update();
+
+        return view('itenscompras.edit', ['item' => $item, 'produtos' => $produtos]);
     }
 
     /**
@@ -66,9 +104,40 @@ class ItensComprasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $item)
     {
-        //
+        $item = ItensCompra::findorFail($item);
+
+        $request->validate([
+            'compra' => 'required',
+            'produto' => 'required',
+            'quantidade' => 'required | numeric',
+            'itemvalor' => 'required | numeric',
+            'itemtotal' => 'required | numeric',
+        ]);
+
+        $update = [
+            'compra_id' => $request->compra,
+            'produto_id' => $request->produto,
+            'quantidade' => $request->quantidade,
+            'itemvalor' => $request->itemvalor,
+            'itemtotal' => $request->itemtotal
+        ];
+
+        $item->update($update);
+
+        $produto = Produto::findOrFail($request->produto);
+        $compra = Compra::findOrFail($request->compra);
+        $produto->estoque += $request->quantidade;
+        $produto->custo = $request->itemvalor;
+        $produto->ultcompra = $compra->datacompra;
+        $produto->update();
+        $compra->total += $request->itemtotal;
+        $compra->total = round($compra->total,2);
+        $compra->update();
+
+        return redirect()->route('compras.edit', $compra->id)->with('success', 'Item '. $produto->descricao .' atualizado com sucesso!');
+
     }
 
     /**
@@ -77,8 +146,27 @@ class ItensComprasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $item)
     {
-        //
+        $item = ItensCompra::findorFail($item);
+
+        $produto = Produto::findOrFail($item->produto->id);
+        $compra = Compra::findOrFail($item->compra->id);
+        $produto->estoque -= $item->quantidade;
+        $produto->update();
+        $compra->total -= $item->itemtotal;
+        $compra->total = round($compra->total,2);
+        $compra->update();
+
+        $item->delete();
+
+        return redirect()->route('compras.edit', $compra->id)->with('success', 'Item removido com sucesso!');
+    }
+
+    public function adicionar(int $compra)
+    {
+        $compra = Compra::findorFail($compra);
+        $produtos = Produto::orderby('descricao')->get();
+        return view('itenscompras.adicionar', ['compra' => $compra, 'produtos'=> $produtos]);
     }
 }

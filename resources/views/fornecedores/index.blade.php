@@ -6,7 +6,7 @@
 <form action="/fornecedores/create">
     <div class="field">
         <div class="control">
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-success">Adicionar</button>
         </div>
     </div>
 </form>
@@ -33,7 +33,7 @@
             <td>{{$fornecedor->email}}</td>
             <td>
                 <a class="btn btn-secondary" href="{{ route('fornecedores.show', $fornecedor->id) }}">Mostrar</a>
-                <a class="btn btn-success" href="{{ route('fornecedores.edit', $fornecedor->id) }}">Editar</a>
+                <a class="btn btn-primary" href="{{ route('fornecedores.edit', $fornecedor->id) }}">Editar</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$fornecedor->id}}">
                     Remover
                 </button>

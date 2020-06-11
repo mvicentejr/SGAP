@@ -45,9 +45,9 @@
         <div class="field">
             <div class="form-row align-items-center">
                 <div class="col-4">
-                <label class="mr-sm-2" for="marca"><strong>Marca: </strong>{{$produto->marca->descricao}}</label>
+                <label class="mr-sm-2" for="marca"><strong>Marca: </strong></label>
                 <select class="custom-select mr-sm-2" id="marca" name="marca">
-                    <option selected>{{$produto->marca->id}}</option>
+                    <option selected value="{{$produto->marca->id}}">{{$produto->marca->descricao}}</option>
                     @foreach ($marcas as $marca)
                         <option value="{{$marca->id}}">{{$marca->descricao}}</option>
                     @endforeach
@@ -58,9 +58,9 @@
         <div class="field">
             <div class="form-row align-items-center">
                 <div class="col-4">
-                <label class="mr-sm-2" for="montadora"><strong>Montadora: </strong>{{$produto->montadora->descricao}}</label>
+                <label class="mr-sm-2" for="montadora"><strong>Montadora: </strong></label>
                 <select class="custom-select mr-sm-2" id="montadora" name="montadora">
-                    <option selected>{{$produto->montadora->id}}</option>
+                    <option selected value="{{$produto->montadora->id}}">{{$produto->montadora->descricao}}</option>
                     @foreach ($montadoras as $montadora)
                         <option value="{{$montadora->id}}">{{$montadora->descricao}}</option>
                     @endforeach

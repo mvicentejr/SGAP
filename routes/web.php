@@ -25,5 +25,6 @@ Route::resource('produtos', 'produtosController');
 
 Route::resource('estoque', 'estoqueController');
 Route::resource('compras', 'comprasController');
+Route::get('/itenscompras/{id}/adicionar', 'ItensComprasController@adicionar')->name('itenscompras.adicionar');
 Route::resource('itenscompras', 'itensComprasController');
 Route::resource('pagamentos', 'pagamentosController');

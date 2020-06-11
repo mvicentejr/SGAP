@@ -17,9 +17,9 @@
         <div class="field">
             <div class="form-row align-items-center">
                 <div class="col-4">
-                <label class="mr-sm-2" for="cargo"><strong>Cargo: </strong>{{$funcionario->cargo->descricao}}</label>
+                <label class="mr-sm-2" for="cargo"><strong>Cargo: </strong></label>
                 <select class="custom-select mr-sm-2" id="cargo" name="cargo">
-                <option selected>{{$funcionario->cargo->id}}</option>
+                    <option selected value="{{$funcionario->cargo->id}}">{{$funcionario->cargo->descricao}}</option>
                     @foreach ($cargos as $cargo)
                         <option value="{{$cargo->id}}">{{$cargo->descricao}}</option>
                     @endforeach
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="field">
-            <strong>Nome: </strong>
+            <strong>Nome Completo: </strong>
             <div class="control">
                 <input type="text" class="input" name="nome" value="{{$funcionario->nome}}">
             </div>

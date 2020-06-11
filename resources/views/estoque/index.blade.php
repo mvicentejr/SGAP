@@ -29,7 +29,7 @@
             <td>{{$produto->emaximo}}</td>
             <td>
                 <a class="btn btn-secondary" href="{{ route('estoque.show', $produto->id) }}">Mostrar</a>
-                <a class="btn btn-success" href="{{ route('estoque.edit', $produto->id) }}">Editar</a>
+                <a class="btn btn-success" href="{{ route('estoque.edit', $produto->id) }}">Custo</a>
             </td>
         </tr>
     @endforeach

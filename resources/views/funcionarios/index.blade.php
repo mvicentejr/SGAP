@@ -6,7 +6,7 @@
 <form action="/funcionarios/create">
     <div class="field">
         <div class="control">
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-success">Adicionar</button>
         </div>
     </div>
 </form>
@@ -18,9 +18,9 @@
         <th>ID</th>
         <th>Cargo</th>
         <th>Data de Cadastro</th>
-        <th>Nome</th>
-        <th>Telefone 1</th>
-        <th>Telefone 2</th>
+        <th>Nome Completo</th>
+        <th>Apelido</th>
+        <th>Telefone</th>
         <th>Email</th>
         <th>Ações</th>
     </tr>
@@ -30,12 +30,12 @@
             <td>{{$funcionario->cargo->descricao}}</td>
             <td>{{date('d/m/Y', strtotime($funcionario->datacadastro))}}</td>
             <td>{{$funcionario->nome}}</td>
+            <td>{{$funcionario->apelido}}</td>
             <td>{{$funcionario->fone1}}</td>
-            <td>{{$funcionario->fone2}}</td>
             <td>{{$funcionario->email}}</td>
             <td>
                 <a class="btn btn-secondary" href="{{ route('funcionarios.show', $funcionario->id) }}">Mostrar</a>
-                <a class="btn btn-success" href="{{ route('funcionarios.edit', $funcionario->id) }}">Editar</a>
+                <a class="btn btn-primary" href="{{ route('funcionarios.edit', $funcionario->id) }}">Editar</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$funcionario->id}}">
                     Remover
                 </button>

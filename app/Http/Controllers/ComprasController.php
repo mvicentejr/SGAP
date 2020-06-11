@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Compra;
 use App\Fornecedor;
+use App\Funcionario;
 use Illuminate\Http\Request;
 
 class ComprasController extends Controller
@@ -28,7 +29,9 @@ class ComprasController extends Controller
      */
     public function create()
     {
-        //
+        $funcionarios = Funcionario::orderby('id')->get();
+        $fornecedores = Fornecedor::orderby('id')->get();
+        return view('compras.create', ['funcionarios' => $funcionarios, 'fornecedores'=> $fornecedores]);
     }
 
     /**
@@ -39,7 +42,16 @@ class ComprasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'datacompra' => 'required',
+            'funcionario' => 'required',
+            'fornecedor' => 'required',
+            'nota' => 'required | numeric',
+        ]);
+
+        $compra = Compra::create($request->all());
+
+        return redirect()->route('compras.edit', $compra->id);
     }
 
     /**
@@ -61,9 +73,13 @@ class ComprasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $compra)
     {
-        //
+        $compra = Compra::findorFail($compra);
+        $compra->funcionario = Funcionario::findOrFail($compra->funcionario);
+        $compra->fornecedor = Fornecedor::findorFail($compra->fornecedor);
+
+        return view('compras.edit', ['compra' => $compra]);
     }
 
     /**

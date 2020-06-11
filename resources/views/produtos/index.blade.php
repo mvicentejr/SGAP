@@ -6,7 +6,7 @@
 <form action="/produtos/create">
     <div class="field">
         <div class="control">
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-success">Adicionar</button>
         </div>
     </div>
 </form>
@@ -31,7 +31,7 @@
             <td>{{$produto->montadora->descricao}}</td>
             <td>
                 <a class="btn btn-secondary" href="{{ route('produtos.show', $produto->id) }}">Mostrar</a>
-                <a class="btn btn-success" href="{{ route('produtos.edit', $produto->id) }}">Editar</a>
+                <a class="btn btn-primary" href="{{ route('produtos.edit', $produto->id) }}">Editar</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$produto->id}}">
                     Remover
                 </button>

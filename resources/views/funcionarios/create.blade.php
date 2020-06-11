@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="field">
-                <strong>Nome: </strong>
+                <strong>Nome Completo: </strong>
                 <div class="control">
                     <input type="text" class="input" name="nome">
                 </div>

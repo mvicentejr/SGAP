@@ -3,10 +3,10 @@
 
 <h2 class="text-center">Listar Compras</h2>
 <br><br>
-<form action="/vendas/create">
+<form action="/compras/create">
     <div class="field">
         <div class="control">
-            <button type="submit" class="btn btn-primary">Nova Compra</button>
+            <button type="submit" class="btn btn-success">Nova Compra</button>
         </div>
     </div>
 </form>

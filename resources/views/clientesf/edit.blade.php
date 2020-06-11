@@ -20,9 +20,9 @@
         <div class="field">
             <div class="form-row align-items-center">
                 <div class="col-4">
-                <label class="mr-sm-2" for="status"><strong>Status: </strong>{{$cliente->status->descricao}}</label>
+                <label class="mr-sm-2" for="status"><strong>Status: </strong></label>
                 <select class="custom-select mr-sm-2" id="status" name="status">
-                <option selected>{{$cliente->status->id}}</option>
+                    <option selected value="{{$cliente->status->id}}">{{$cliente->status->descricao}}</option>
                     @foreach ($situacao as $stat)
                         <option value="{{$stat->id}}">{{$stat->descricao}}</option>
                     @endforeach

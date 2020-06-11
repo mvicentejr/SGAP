@@ -15,7 +15,7 @@
                 <strong>Cargo: </strong> {{$funcionario->cargo->descricao}}
             </div>
             <div class="field">
-                <strong>Nome: </strong> {{$funcionario->nome}}
+                <strong>Nome Completo: </strong> {{$funcionario->nome}}
             </div>
             <div class="field">
                 <strong>Apelido: </strong> {{$funcionario->apelido}}
