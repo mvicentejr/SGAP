@@ -19,13 +19,13 @@
                 <div class="col-6">
                     <strong>Código Original: </strong>
                     <div class="control">
-                        <input type="text" class="input" name="codoriginal" value="{{$produto->codoriginal}}">
+                        <input type="text" class="input" name="codoriginal" maxlength="12" value="{{$produto->codoriginal}}">
                     </div>
                 </div>
                 <div class="col-6">
                     <strong>Código Fabricante: </strong>
                     <div class="control">
-                        <input type="text" class="input" name="codfabrica" value="{{$produto->codfabrica}}">
+                        <input type="text" class="input" name="codfabrica"  maxlength="12" value="{{$produto->codfabrica}}">
                     </div>
                 </div>
             </div>
@@ -107,30 +107,48 @@
         <div class="field">
             <div class="form-row">
                 <div class="col-6">
-                    <strong>Custo Compra: </strong> {{$produto->custo}}
+                    <strong>Preço Compra: </strong>
+                    <div class="control">
+                        <input type="text" class="input" name="custo" id="custo" onkeyup="calculaCusto()" value="{{$produto->custo}}">
+                    </div>
                 </div>
                 <div class="col">
-                    <strong>Despesas (%): </strong> {{$produto->despesa}}
+                    <strong>Despesas (%): </strong>
+                    <div class="control">
+                        <input type="text" class="input" name="despesa" id="despesa" onkeyup="calculaCusto()" value="{{$produto->despesa}}">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="field">
             <div class="form-row">
                 <div class="col-6">
-                    <strong>ICMS (%): </strong> {{$produto->icms}}
+                    <strong>ICMS (%): </strong>
+                    <div class="control">
+                        <input type="text" class="input" name="icms" id="icms" onkeyup="calculaCusto()" value="{{$produto->icms}}">
+                    </div>
                 </div>
                 <div class="col">
-                    <strong>Custo Total: </strong> {{$produto->ctotal}}
+                    <strong>Custo Total: </strong>
+                    <div class="control">
+                        <input type="text" class="input" name="ctotal" id="ctotal" value="{{$produto->ctotal}}">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="field">
             <div class="form-row">
                 <div class="col-6">
-                    <strong>Lucro (%): </strong> {{$produto->perlucro}}
+                    <strong>Lucro (%): </strong>
+                    <div class="control">
+                        <input type="text" class="input" name="perlucro" id="perlucro" onkeyup="calculaTotal()" value="{{$produto->perlucro}}">
+                    </div>
                 </div>
                 <div class="col">
-                    <strong>Valor Venda: </strong> {{$produto->valorvenda}}
+                    <strong>Valor Venda: </strong>
+                    <div class="control">
+                        <input type="text" class="input" name="valorvenda" id="valorvenda" value="{{$produto->valorvenda}}">
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,10 +162,16 @@
         <div class="field">
             <div class="form-row">
                 <div class="col-6">
-                    <strong>Mínimo: </strong> {{$produto->eminimo}}
+                    <strong>Mínimo: </strong>
+                    <div class="control">
+                        <input type="number" class="input" name="eminimo" value="{{$produto->eminimo}}">
+                    </div>
                 </div>
                 <div class="col">
-                    <strong>Máximo: </strong> {{$produto->emaximo}}
+                    <strong>Máximo: </strong>
+                    <div class="control">
+                        <input type="number" class="input" name="emaximo" value="{{$produto->emaximo}}">
+                    </div>
                 </div>
             </div>
         </div>

@@ -108,7 +108,7 @@
                             <a class="dropdown-item" href="{{route('compras.index')}}">Compra</a>
                             <a class="dropdown-item" href="#">Venda</a>
                             <a class="dropdown-item" href="{{route('estoque.index')}}">Estoque</a>
-                            <a class="dropdown-item" href="">Pagamento</a>
+                            <a class="dropdown-item" href="{{route('pagamentos.index')}}">Pagamento</a>
                             <a class="dropdown-item" href="#">Recebimento</a>
                             <a class="dropdown-item" href="#">Bloquear Cliente</a>
                         </div>

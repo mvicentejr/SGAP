@@ -1,24 +1,15 @@
 @extends('layout')
 @section('content')
 <div class="pull-right">
-    <h2 class="text-center">Estoque - Editar Produto</h2>
+    <h2 class="text-center">Estoque - Editar Custo</h2>
 </div>
 <div class="jumbotron">
     <div class="col-lg-6 margin-tb">
         <form class="form" action="{{ route('estoque.update', $produto->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="pull-right">
-            <h5>Dados Gerais: </h5>
-        </div>
         <div class="field">
             <strong>ID: </strong> {{$produto->id}}
-        </div>
-        <div class="field">
-            <strong>Código Original: </strong> {{$produto->codoriginal}}
-        </div>
-        <div class="field">
-            <strong>Código Fabricante: </strong> {{$produto->codfabrica}}
         </div>
         <div class="field">
             <strong>Descrição: </strong> {{$produto->descricao}}
@@ -27,33 +18,28 @@
             <strong>Aplicação: </strong> {{$produto->aplicacao}}
         </div>
         <div class="field">
-            <strong>Marca: </strong> {{$produto->marca->descricao}}
-        </div>
-        <div class="field">
-            <strong>Montadora: </strong> {{$produto->montadora->descricao}}
-        </div>
-        <div class="field">
-            <strong>Unidade: </strong> {{$produto->unidade}}
-        </div>
-        <div class="field">
-            <strong>NCM/SH: </strong> {{$produto->ncmsh}}
-        </div>
-        <div class="field">
-            <strong>CST: </strong> {{$produto->cst}}
-        </div>
-        <div class="field">
-            <strong>CFOP: </strong> {{$produto->cfop}}
-        </div>
-        <br>
-        <div class="pull-right">
-            <h5>Custo do Produto: </h5>
+            <strong>Data Compra: </strong> {{date('d/m/Y', strtotime($produto->ultcompra))}}
         </div>
         <div class="field">
             <div class="form-row">
                 <div class="col-6">
-                    <strong>Custo Compra: </strong>
+                    <strong>Custo Atual: </strong> R$ {{$produto->custo}}
+                </div>
+                <div class="col">
+                    <strong>Última Compra: </strong> R$ {{$novoitem->itemvalor}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="pull-right">
+            <h5>Atualizar Custo: </h5>
+        </div>
+        <div class="field">
+            <div class="form-row">
+                <div class="col-6">
+                    <strong>Preço Compra: </strong>
                     <div class="control">
-                        <input type="text" class="input" name="custo" id="custo" onkeyup="calculaCusto()" value="{{$produto->custo}}">
+                        <input type="text" class="input" name="custo" id="custo" onkeyup="calculaCusto()">
                     </div>
                 </div>
                 <div class="col">
@@ -96,41 +82,8 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div class="pull-right">
-            <h5>Estoque: </h5>
-        </div>
-        <div class="field">
-            <strong>Atual: </strong> {{$produto->estoque}}
-        </div>
-        <div class="field">
-            <div class="form-row">
-                <div class="col-6">
-                    <strong>Mínimo: </strong>
-                    <div class="control">
-                        <input type="number" class="input" name="eminimo" value="{{$produto->eminimo}}">
-                    </div>
-                </div>
-                <div class="col">
-                    <strong>Máximo: </strong>
-                    <div class="control">
-                        <input type="number" class="input" name="emaximo" value="{{$produto->emaximo}}">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="field">
-            <div class="form-row">
-                <div class="col-6">
-                    <strong>Última Compra: </strong> {{date('d/m/Y', strtotime($produto->ultcompra))}}
-                </div>
-                <div class="col">
-                    <strong>Última Venda: </strong> {{date('d/m/Y', strtotime($produto->ultvenda))}}
-                </div>
-            </div>
-        </div>
         <br><br>
-        <input type="submit" class="button btn-success" value="Gravar">
+        <input type="submit" class="button btn-success" value="Atualizar">
         <a class="btn btn-warning" href="{{route('estoque.index')}}">Voltar</a>
     </form>
     </div>

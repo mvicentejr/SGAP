@@ -48,7 +48,7 @@
             <div class="field">
                 <div class="form-row">
                     <div class="col-6">
-                        <strong>Custo Compra: </strong> R$  {{$produto->custo}}
+                        <strong>Preço Compra: </strong> R$  {{$produto->custo}}
                     </div>
                     <div class="col">
                         <strong>Despesas (%): </strong> {{$produto->despesa}}

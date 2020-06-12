@@ -64,7 +64,7 @@
             @endforeach
         </table>
         <br>
-        <a class="btn btn-dark" href="{{route('compras.index')}}">Finalizar Compra</a>
+        <a class="btn btn-dark" href="{{route('pagamentos.adicionar', $compra->id)}}">Finalizar Compra</a>
     </div>
 </div>
 

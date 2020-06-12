@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Produto;
 use App\Marca;
 use App\Montadora;
+use App\Compra;
+use App\ItensCompra;
+use App\ItensVenda;
 use Illuminate\Http\Request;
 
 class EstoqueController extends Controller
@@ -16,7 +19,7 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::orderby('descricao')->get();
+        $produtos = Produto::query()->where('estoque','>',0)->select(['*'])->orderBy('descricao')->get();
 
         return view('estoque.index', ['produtos' => $produtos]);
     }
@@ -53,6 +56,7 @@ class EstoqueController extends Controller
         $produto = Produto::findorFail($estoque);
         $produto->marca = Marca::findOrFail($produto->marca);
         $produto->montadora = Montadora::findOrFail($produto->montadora);
+
         return view('estoque.show', ['produto' => $produto]);
     }
 
@@ -62,13 +66,14 @@ class EstoqueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $estoque)
+    public function edit(int $produto)
     {
-        $produto = Produto::findorFail($estoque);
-        $produto->marca = Marca::findOrFail($produto->marca);
-        $produto->montadora = Montadora::findorFail($produto->montadora);
+        $produto = Produto::findorFail($produto);
 
-        return view('estoque.edit', ['produto' => $produto]);
+        $item = ItensCompra::query()->where('produto_id','=',$produto->id)->select('*')->orderByDesc('id')->get();
+        $novoitem = $item[0];
+
+        return view('estoque.edit', ['produto' => $produto, 'novoitem' => $novoitem]);
     }
 
     /**
@@ -78,9 +83,9 @@ class EstoqueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $estoque)
+    public function update(Request $request, int $produto)
     {
-        $produto = Produto::findorFail($estoque);
+        $produto = Produto::findorFail($produto);
 
         $request->validate([
             'custo' => 'required',
@@ -89,16 +94,12 @@ class EstoqueController extends Controller
             'ctotal' => 'required',
             'perlucro' => 'required',
             'valorvenda' => 'required',
-            'eminimo' => 'required | numeric',
-            'emaximo' => 'required | numeric',
         ]);
 
         $produto->update($request->all());
-        //$produto = Produto::query()->where('id','=', $estoque)->update(['custo' => 'custo', 'despesa' => 'despesa', 'icms' => 'icms', 'ctotal' => 'ctotal', 'perlucro' => 'perlucro', 'valorvenda' => 'valorvenda', 'eminimo' => 'eminimo', 'emaximo' => 'emaximo']);
 
-        $desc = $request->input('descricao');
+        return redirect()->route('estoque.index')->with('success', 'Valor de Venda atualizado com sucesso!');
 
-        return redirect()->route('estoque.index')->with('success', 'Produto '. $desc .' atualizado com sucesso!');
     }
 
     /**

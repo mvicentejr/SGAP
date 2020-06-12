@@ -57,7 +57,6 @@ class ItensComprasController extends Controller
         $produto = Produto::findOrFail($request->produto);
         $compra = Compra::findOrFail($request->compra);
         $produto->estoque += $request->quantidade;
-        $produto->custo = $request->itemvalor;
         $produto->ultcompra = $compra->datacompra;
         $produto->update();
         $compra->total += $request->itemtotal;
@@ -129,7 +128,6 @@ class ItensComprasController extends Controller
         $produto = Produto::findOrFail($request->produto);
         $compra = Compra::findOrFail($request->compra);
         $produto->estoque += $request->quantidade;
-        $produto->custo = $request->itemvalor;
         $produto->ultcompra = $compra->datacompra;
         $produto->update();
         $compra->total += $request->itemtotal;

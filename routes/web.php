@@ -28,3 +28,4 @@ Route::resource('compras', 'comprasController');
 Route::get('/itenscompras/{id}/adicionar', 'ItensComprasController@adicionar')->name('itenscompras.adicionar');
 Route::resource('itenscompras', 'itensComprasController');
 Route::resource('pagamentos', 'pagamentosController');
+Route::get('/pagamentos/{id}/adicionar', 'PagamentosController@adicionar')->name('pagamentos.adicionar');

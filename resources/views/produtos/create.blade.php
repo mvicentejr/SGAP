@@ -15,13 +15,13 @@
                     <div class="col-6">
                         <strong>Código Original: </strong>
                         <div class="control">
-                            <input type="text" class="input" name="codoriginal">
+                            <input type="text" class="input" name="codoriginal" maxlength="12">
                         </div>
                     </div>
                     <div class="col-6">
                         <strong>Código Fabricante: </strong>
                         <div class="control">
-                            <input type="text" class="input" name="codfabrica">
+                            <input type="text" class="input" name="codfabrica" maxlength="12">
                         </div>
                     </div>
                 </div>
@@ -96,6 +96,78 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="pull-right">
+                <h5>Custo do Produto: </h5>
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>Preço Compra: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="custo" id="custo" onkeyup="calculaCusto()">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <strong>Despesas (%): </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="despesa" id="despesa" onkeyup="calculaCusto()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>ICMS (%): </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="icms" id="icms" onkeyup="calculaCusto()">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <strong>Custo Total: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="ctotal" id="ctotal" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>Lucro (%): </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="perlucro" id="perlucro" onkeyup="calculaTotal()">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <strong>Valor Venda: </strong>
+                        <div class="control">
+                            <input type="text" class="input" name="valorvenda" id="valorvenda" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="pull-right">
+                <h5>Estoque: </h5>
+            </div>
+            <div class="field">
+                <div class="form-row">
+                    <div class="col-6">
+                        <strong>Mínimo: </strong>
+                        <div class="control">
+                            <input type="number" class="input" name="eminimo">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <strong>Máximo: </strong>
+                        <div class="control">
+                            <input type="number" class="input" name="emaximo">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br><br>
             <input type="submit" class="button btn-success" value="Gravar">
             <input type="reset" class="button btn-secondary" value="Limpar">
@@ -115,5 +187,33 @@
         </ul>
     </div>
     @endif
+
+    <script>
+        let custo = document.getElementById('custo');
+        let despesa = document.getElementById('despesa');
+        let icms = document.getElementById('icms');
+        let ctotal = document.getElementById('ctotal');
+        let perlucro = document.getElementById('perlucro');
+        let valorvenda = document.getElementById('valorvenda');
+
+        function calculaCusto(){
+            ctotal.value = 0;
+            if(custo.value && despesa.value && icms.value){
+                ctotal.value = (parseFloat(custo.value) +
+                            (parseFloat(custo.value) * (parseFloat(despesa.value) / 100) +
+                            (parseFloat(custo.value)*parseFloat(icms.value)/100))).toFixed(2);
+            }
+        }
+
+        function calculaTotal(){
+            valorvenda.value = 0;
+            if(perlucro.value){
+                valorvenda.value = (parseFloat(custo.value) +
+                            (parseFloat(custo.value) * (parseFloat(despesa.value) / 100) +
+                            (parseFloat(custo.value) * parseFloat(icms.value) / 100)) *
+                            (1 + (parseFloat(perlucro.value) / 100))).toFixed(2);
+            }
+        }
+    </script>
 
 @endsection

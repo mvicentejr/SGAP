@@ -56,6 +56,14 @@ class ProdutosController extends Controller
             'ncmsh' => 'required | numeric',
             'cst' => 'required | numeric',
             'cfop' => 'required | numeric',
+            'custo' => 'required',
+            'despesa' => 'required',
+            'icms' => 'required',
+            'ctotal' => 'required',
+            'perlucro' => 'required',
+            'valorvenda' => 'required',
+            'eminimo' => 'required | numeric',
+            'emaximo' => 'required | numeric',
         ]);
 
         Produto::create($request->all());
@@ -117,9 +125,18 @@ class ProdutosController extends Controller
             'ncmsh' => 'required | numeric',
             'cst' => 'required | numeric',
             'cfop' => 'required | numeric',
+            'custo' => 'required',
+            'despesa' => 'required',
+            'icms' => 'required',
+            'ctotal' => 'required',
+            'perlucro' => 'required',
+            'valorvenda' => 'required',
+            'eminimo' => 'required | numeric',
+            'emaximo' => 'required | numeric',
         ]);
 
         $produto->update($request->all());
+        //$produto = Produto::query()->where('id','=', $estoque)->update(['custo' => 'custo', 'despesa' => 'despesa', 'icms' => 'icms', 'ctotal' => 'ctotal', 'perlucro' => 'perlucro', 'valorvenda' => 'valorvenda', 'eminimo' => 'eminimo', 'emaximo' => 'emaximo']);
 
         $desc = $request->input('descricao');
 
