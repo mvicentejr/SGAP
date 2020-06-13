@@ -24,8 +24,16 @@ Route::resource('fornecedores', 'fornecedoresController');
 Route::resource('produtos', 'produtosController');
 
 Route::resource('estoque', 'estoqueController');
+
 Route::resource('compras', 'comprasController');
 Route::get('/itenscompras/{id}/adicionar', 'ItensComprasController@adicionar')->name('itenscompras.adicionar');
 Route::resource('itenscompras', 'itensComprasController');
 Route::resource('pagamentos', 'pagamentosController');
 Route::get('/pagamentos/{id}/adicionar', 'PagamentosController@adicionar')->name('pagamentos.adicionar');
+
+Route::resource('vendas', 'vendasController');
+Route::get('/vendas/{id}/cancelar', 'VendasController@cancelar')->name('vendas.cancelar');
+Route::get('/itensvendas/{id}/adicionar', 'ItensVendasController@adicionar')->name('itensvendas.adicionar');
+Route::resource('itensvendas', 'itensVendasController');
+Route::resource('recebimentos', 'recebimentosController');
+Route::get('/recebimentos/{id}/adicionar', 'RecebimentosController@adicionar')->name('recebimento.adicionar');

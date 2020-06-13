@@ -105,11 +105,11 @@
                             Movimentos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('compras.index')}}">Compra</a>
-                            <a class="dropdown-item" href="#">Venda</a>
+                            <a class="dropdown-item" href="{{route('compras.index')}}">Compras</a>
+                            <a class="dropdown-item" href="{{route('vendas.index')}}">Vendas</a>
                             <a class="dropdown-item" href="{{route('estoque.index')}}">Estoque</a>
-                            <a class="dropdown-item" href="{{route('pagamentos.index')}}">Pagamento</a>
-                            <a class="dropdown-item" href="#">Recebimento</a>
+                            <a class="dropdown-item" href="{{route('pagamentos.index')}}">Pagamentos</a>
+                            <a class="dropdown-item" href="{{route('recebimentos.index')}}">Recebimentos</a>
                             <a class="dropdown-item" href="#">Bloquear Cliente</a>
                         </div>
                     </li>
