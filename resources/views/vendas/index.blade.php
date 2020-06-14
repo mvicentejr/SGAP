@@ -3,7 +3,7 @@
 
 <h2 class="text-center">Listar Vendas</h2>
 <br><br>
-<form action="/compras/create">
+<form action="/vendas/create">
     <div class="field">
         <div class="control">
             <button type="submit" class="btn btn-success">Nova Venda</button>
@@ -32,7 +32,7 @@
             <td>{{$venda->status->descricao}}</td>
             <td>R$ {{$venda->subtotal}}</td>
             <td>
-                <a class="btn btn-success" href="{{ route('pagamentos.adicionar', $venda->id) }}">Finalizar</a>
+                <a class="btn btn-success" href="{{ route('recebimentos.adicionar', $venda->id) }}">Finalizar</a>
                 <a class="btn btn-primary" href="{{ route('vendas.edit', $venda->id) }}">Editar</a>
                 <a class="btn btn-danger" href="{{ route('vendas.cancelar', $venda->id) }}">Cancelar</a>
             </td>
@@ -53,7 +53,7 @@
         <th>Cliente</th>
         <th>Status</th>
         <th>Subtotal</th>
-        <th>Desconto</th>
+        <th>Desconto (%)</th>
         <th>Total</th>
         <th>Ações</th>
     </tr>
@@ -65,10 +65,10 @@
             <td>{{$fvenda->cliente->nome}}</td>
             <td>{{$fvenda->status->descricao}}</td>
             <td>R$ {{$fvenda->subtotal}}</td>
-            <td>R$ {{$fvenda->desconto * $fvenda->subtotal / 100}}</td>
+            <td>{{$fvenda->desconto}}</td>
             <td>R$ {{$fvenda->total}}</td>
             <td>
-                <a class="btn btn-secondary" href="{{ route('vendas.show', $venda->id) }}">Mostrar</a>
+                <a class="btn btn-secondary" href="{{ route('vendas.show', $fvenda->id) }}">Mostrar</a>
             </td>
         </tr>
     @endforeach

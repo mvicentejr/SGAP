@@ -1,31 +1,31 @@
 @extends('layout')
 @section('content')
 <div class="pull-right">
-    <h2 class="text-center">Nova Compra - Adicionar Produtos</h2>
+    <h2 class="text-center">Nova Venda - Adicionar Produtos</h2>
 </div>
 <div class="jumbotron">
     <div class="col-lg-6 margin-tb">
         <div class="field">
-            <strong>Compra: </strong> {{$compra->id}}
+            <strong>Venda: </strong> {{$venda->id}}
         </div>
         <div class="field">
-            <strong>Data Compra: </strong> {{date('d/m/Y', strtotime($compra->datacompra))}}
+            <strong>Data Venda: </strong> {{date('d/m/Y', strtotime($venda->datavenda))}}
         </div>
         <div class="field">
-            <strong>Funcionário: </strong> {{$compra->funcionario->apelido}}
+            <strong>Status: </strong> {{$venda->status->descricao}}
         </div>
         <div class="field">
-            <strong>Fornecedor: </strong> {{$compra->fornecedor->nome}}
+            <strong>Vendedor: </strong> {{$venda->funcionario->apelido}}
         </div>
         <div class="field">
-            <strong>Nota Fiscal: </strong> {{$compra->nota}}
+            <strong>Cliente: </strong> {{$venda->cliente->nome}}
         </div>
         <div class="field">
-            <strong>Total: </strong> R$ {{$compra->total}}
+            <strong>Total: </strong> R$ {{$venda->subtotal}}
         </div>
     </div>
     <br><br>
-    <form action="/itenscompras/{{$compra->id}}/adicionar">
+    <form action="/itensvendas/{{$venda->id}}/adicionar">
         <div class="field">
             <div class="control">
                 <button type="submit" class="btn btn-success">Novo Item</button>
@@ -46,7 +46,7 @@
                 <th>Total Item</th>
                 <th>Ações</th>
             </tr>
-            @foreach ($compra->itens as $item)
+            @foreach ($venda->itens as $item)
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->produto->id}}</td>
@@ -56,8 +56,8 @@
                 <td>{{$item->itemvalor}}</td>
                 <td>{{$item->itemtotal}}</td>
                 <td>
-                    <form action="{{route('itenscompras.destroy', $item->id)}}" method="POST">
-                        <a class="btn btn-primary" href="{{ route('itenscompras.edit', $item->id) }}">Editar</a>
+                    <form action="{{route('itensvendas.destroy', $item->id)}}" method="POST">
+                        <a class="btn btn-primary" href="{{ route('itensvendas.edit', $item->id) }}">Editar</a>
                         @csrf
                         @method("DELETE")
                         <button class="btn btn-danger" type="submit">Remover</button>
@@ -67,7 +67,7 @@
             @endforeach
         </table>
         <br>
-        <a class="btn btn-dark" href="{{route('pagamentos.adicionar', $compra->id)}}">Finalizar Compra</a>
+        <a class="btn btn-dark" href="{{route('vendas.index')}}">Terminar</a>
     </div>
 </div>
 

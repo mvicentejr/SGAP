@@ -64,6 +64,7 @@ class ComprasController extends Controller
     {
         $compra = Compra::findorFail($compra);
         $compra->fornecedor = Fornecedor::findOrFail($compra->fornecedor);
+        $compra->funcionario = Funcionario::findOrFail($compra->funcionario);
         return view('compras.show', ['compra' => $compra]);
     }
 

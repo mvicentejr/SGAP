@@ -1,19 +1,27 @@
 @extends('layout')
 @section('content')
 <div class="pull-right">
-    <h2 class="text-center">Compra - Adicionar Pagamentos</h2>
+    <h2 class="text-center">Venda - Adicionar Recebimentos</h2>
 </div>
 <div class="jumbotron">
     <div class="col-lg-6 margin-tb">
-        <form class="form" action="/pagamentos" method="POST">
+        <form class="form" action="/recebimentos" method="POST">
         @csrf
             <div class="field">
-                <strong>Compra: </strong> {{$compra->id}}
-                <input type="hidden" class="input" name="compra" value="{{$compra->id}}">
+                <strong>Venda: </strong> {{$venda->id}}
+                <input type="hidden" class="input" name="venda" value="{{$venda->id}}">
             </div>
             <div class="field">
-                <strong>Total: </strong> {{$compra->total}}
-                <input type="hidden" class="input" name="total" value="{{$compra->total}}">
+                <strong>Subtotal: </strong>
+                <input type="text" class="input" name="subtotal" value="{{$venda->subtotal}}" id="subtotal" onkeyup="calculaTotal()">
+            </div>
+            <div class="field">
+                <strong>Desconto (%): </strong>
+                <input type="text" class="input" name="desconto" id="desconto" onkeyup="calculaTotal()">
+            </div>
+            <div class="field">
+                <strong>Total: </strong>
+                <input type="text" class="input" name="total" value="" id="total">
             </div>
             <div class="field">
                 <div class="form-row align-items-center">
@@ -41,7 +49,7 @@
             <br><br>
             <input type="submit" class="button btn-success" value="Gravar">
             <input type="reset" class="button btn-secondary" value="Limpar">
-            <a class="btn btn-warning" href="{{route('compras.edit', $compra->id)}}">Voltar</a>
+            <a class="btn btn-warning" href="{{route('vendas.index')}}">Voltar</a>
         </form>
     </div>
 </div>
@@ -57,5 +65,18 @@
         </ul>
     </div>
     @endif
+
+    <script>
+        let subtotal = document.getElementById('subtotal');
+        let desconto = document.getElementById('desconto');
+        let total = document.getElementById('total');
+
+        function calculaTotal(){
+            total.value = 0;
+            if(subtotal.value && desconto.value){
+                total.value = (parseFloat(subtotal.value)-(parseFloat(subtotal.value)*parseFloat(desconto.value)/100)).toFixed(2);
+            }
+        }
+    </script>
 
 @endsection

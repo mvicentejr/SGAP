@@ -89,10 +89,6 @@ class ItensComprasController extends Controller
 
         $produtos = Produto::orderby('descricao')->get();
 
-        $compra = Compra::findOrFail($item->compra->id);
-        $compra->total -= $item->itemtotal;
-        $compra->update();
-
         return view('itenscompras.edit', ['item' => $item, 'produtos' => $produtos]);
     }
 
@@ -122,6 +118,9 @@ class ItensComprasController extends Controller
             'itemvalor' => $request->itemvalor,
             'itemtotal' => $request->itemtotal
         ];
+
+        $compra->total -= $item->itemtotal;
+        $compra->update();
 
         $item->update($update);
 

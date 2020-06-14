@@ -39,7 +39,9 @@ class VendasController extends Controller
      */
     public function create()
     {
-        //
+        $funcionarios = Funcionario::orderby('id')->get();
+        $clientes = Cliente::orderby('id')->get();
+        return view('vendas.create', ['funcionarios' => $funcionarios, 'clientes'=> $clientes]);
     }
 
     /**
@@ -50,7 +52,15 @@ class VendasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'datavenda' => 'required',
+            'funcionario' => 'required',
+            'cliente' => 'required',
+        ]);
+
+        $venda = Venda::create($request->all());
+
+        return redirect()->route('vendas.edit', $venda->id);
     }
 
     /**
@@ -59,9 +69,14 @@ class VendasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $fvenda)
     {
-        //
+        $venda = Venda::findorFail($fvenda);
+        $venda->cliente = Cliente::findOrFail($venda->cliente);
+        $venda->funcionario = Funcionario::findOrFail($venda->funcionario);
+        $venda->status = StatusVenda::findOrFail($venda->status);
+
+        return view('vendas.show', ['venda' => $venda]);
     }
 
     /**
@@ -70,9 +85,14 @@ class VendasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $venda)
     {
-        //
+        $venda = Venda::findorFail($venda);
+        $venda->funcionario = Funcionario::findOrFail($venda->funcionario);
+        $venda->cliente = Cliente::findorFail($venda->cliente);
+        $venda->status = StatusVenda::findOrFail($venda->status);
+
+        return view('vendas.edit', ['venda' => $venda]);
     }
 
     /**
@@ -100,6 +120,10 @@ class VendasController extends Controller
 
     public function cancelar(int $venda)
     {
-        //
+        $venda = Venda::findOrFail($venda);
+        $venda->status = 3;
+        $venda->update();
+
+        return redirect()->route('vendas.index')->with('success', 'Venda '. $venda->id. ' Item removido com sucesso!');
     }
 }

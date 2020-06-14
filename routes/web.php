@@ -36,4 +36,4 @@ Route::get('/vendas/{id}/cancelar', 'VendasController@cancelar')->name('vendas.c
 Route::get('/itensvendas/{id}/adicionar', 'ItensVendasController@adicionar')->name('itensvendas.adicionar');
 Route::resource('itensvendas', 'itensVendasController');
 Route::resource('recebimentos', 'recebimentosController');
-Route::get('/recebimentos/{id}/adicionar', 'RecebimentosController@adicionar')->name('recebimento.adicionar');
+Route::get('/recebimentos/{id}/adicionar', 'RecebimentosController@adicionar')->name('recebimentos.adicionar');
