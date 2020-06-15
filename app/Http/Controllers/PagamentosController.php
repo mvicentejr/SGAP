@@ -51,10 +51,9 @@ class PagamentosController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate([
+        $request->validate([
             'compra' => 'required',
             'tipopag'=> 'required',
-            'totalparc' => 'required | numeric',
         ]);
 
         $compra = Compra::findOrFail($request->compra);
@@ -84,6 +83,10 @@ class PagamentosController extends Controller
             Pagamento::create($insert);
         }
         else{
+            $request->validate([
+                'totalparc' => 'required | numeric'
+            ]);
+
             $parc = 1;
             $valor = $compra->total / $request->totalparc;
             $valor = round($valor,2);

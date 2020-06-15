@@ -90,6 +90,10 @@ class RecebimentosController extends Controller
             Recebimento::create($insert);
         }
         else{
+            $request->validate([
+                'totalparc' => 'required | numeric'
+            ]);
+
             $parc = 1;
             $valor = $venda->total / $request->totalparc;
             $valor = round($valor,2);

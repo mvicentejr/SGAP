@@ -110,7 +110,7 @@
                             <a class="dropdown-item" href="{{route('estoque.index')}}">Estoque</a>
                             <a class="dropdown-item" href="{{route('pagamentos.index')}}">Pagamentos</a>
                             <a class="dropdown-item" href="{{route('recebimentos.index')}}">Recebimentos</a>
-                            <a class="dropdown-item" href="#">Bloquear Cliente</a>
+                            <a class="dropdown-item" href="{{route('clientes.index')}}">Bloquear Cliente</a>
                         </div>
                     </li>
                     <!--Relatórios-->
@@ -119,14 +119,14 @@
                         Relatórios
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Cliente</a>
-                          <a class="dropdown-item" href="#">Fornecedor</a>
-                          <a class="dropdown-item" href="">Funcionário</a>
-                          <a class="dropdown-item" href="#">Produto</a>
-                          <a class="dropdown-item" href="#">Compra</a>
-                          <a class="dropdown-item" href="#">Venda</a>
-                          <a class="dropdown-item" href="">Pagamento</a>
-                          <a class="dropdown-item" href="#">Recebimento</a>
+                          <a class="dropdown-item" href="#">Clientes</a>
+                          <a class="dropdown-item" href="#">Fornecedores</a>
+                          <a class="dropdown-item" href="{{route('relfuncionarios.index')}}">Funcionários</a>
+                          <a class="dropdown-item" href="#">Produtos</a>
+                          <a class="dropdown-item" href="#">Compras</a>
+                          <a class="dropdown-item" href="#">Vendas</a>
+                          <a class="dropdown-item" href="">Pagamentos</a>
+                          <a class="dropdown-item" href="#">Recebimentos</a>
                         </div>
                     </li>
                     <li class="nav-item">

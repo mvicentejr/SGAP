@@ -24,6 +24,7 @@ Route::resource('fornecedores', 'fornecedoresController');
 Route::resource('produtos', 'produtosController');
 
 Route::resource('estoque', 'estoqueController');
+Route::resource('clientes', 'clientesController');
 
 Route::resource('compras', 'comprasController');
 Route::get('/itenscompras/{id}/adicionar', 'ItensComprasController@adicionar')->name('itenscompras.adicionar');
@@ -37,3 +38,9 @@ Route::get('/itensvendas/{id}/adicionar', 'ItensVendasController@adicionar')->na
 Route::resource('itensvendas', 'itensVendasController');
 Route::resource('recebimentos', 'recebimentosController');
 Route::get('/recebimentos/{id}/adicionar', 'RecebimentosController@adicionar')->name('recebimentos.adicionar');
+
+Route::group(['prefix' => '/relfuncionarios'], function () {
+    Route::get('/', 'RelFuncionariosController@index')->name('relfuncionarios.index');
+    Route::get('/geral','RelFuncionariosController@geral')->name('relfuncionarios.geral');
+    Route::get('/cargo/{id}','RelFuncionariosController@cargo')->name('relfuncionarios.cargo');
+});
