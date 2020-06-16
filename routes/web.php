@@ -42,5 +42,5 @@ Route::get('/recebimentos/{id}/adicionar', 'RecebimentosController@adicionar')->
 Route::group(['prefix' => '/relfuncionarios'], function () {
     Route::get('/', 'RelFuncionariosController@index')->name('relfuncionarios.index');
     Route::get('/geral','RelFuncionariosController@geral')->name('relfuncionarios.geral');
-    Route::get('/cargo/{id}','RelFuncionariosController@cargo')->name('relfuncionarios.cargo');
+    Route::post('/cargo','RelFuncionariosController@cargo')->name('relfuncionarios.cargo');
 });

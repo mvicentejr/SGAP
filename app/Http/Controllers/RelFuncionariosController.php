@@ -29,10 +29,10 @@ class RelFuncionariosController extends Controller
         return $pdf->stream('geral.pdf');
     }
 
-    public function cargo(int $id)
+    public function cargo(Request $request)
     {
-        $cargo = Cargo::findOrFail($id);
-        $funcionarios = Funcionario::query()->where('cargo','=',$id)->select(['*'])->orderBy('id')->get();
+        $cargo = Cargo::findOrFail($request->cargo);
+        $funcionarios = Funcionario::query()->where('cargo','=',$cargo->id)->select(['*'])->orderBy('id')->get();
         foreach ($funcionarios as $funcionario)
             $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
 
