@@ -70,7 +70,7 @@ Route::group(['prefix' => '/relvendas'], function () {
 Route::group(['prefix' => '/relcompras'], function () {
     Route::get('/', 'RelComprasController@index')->name('relcompras.index');
     Route::get('/geral','RelComprasController@geral')->name('relcompras.geral');
-    Route::post('/fornecedor','RelComprasController@cliente')->name('relcompras.fornecedor');
+    Route::post('/fornecedor','RelComprasController@fornecedor')->name('relcompras.fornecedor');
 });
 Route::group(['prefix' => '/relpagamentos'], function () {
     Route::get('/', 'RelPagamentosController@index')->name('relpagamentos.index');
