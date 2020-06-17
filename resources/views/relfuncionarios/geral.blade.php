@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<h2 class="text-center">Relatório de Funcionários - Geral</h2>
+<h2 class="text-center">Relatório Geral de Funcionários</h2>
 <br><br>
 <div class="table-responsive">
     <table class="table table-striped table-hover">
@@ -27,6 +27,10 @@
         </tr>
     @endforeach
     </table>
+    <br>
+    <div class="pull-right">
+        <strong>Total de Funcionários: </strong> {{$total}}
+    </div>
 </div>
 
 @endsection

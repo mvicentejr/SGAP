@@ -31,6 +31,10 @@
             </tr>
     @endforeach
     </table>
+    <br>
+    <div class="pull-right">
+        <strong>Total de Funcionários: </strong> {{$total}}
+    </div>
 </div>
 
 @endsection

@@ -44,3 +44,41 @@ Route::group(['prefix' => '/relfuncionarios'], function () {
     Route::get('/geral','RelFuncionariosController@geral')->name('relfuncionarios.geral');
     Route::post('/cargo','RelFuncionariosController@cargo')->name('relfuncionarios.cargo');
 });
+Route::group(['prefix' => '/relclientes'], function () {
+    Route::get('/', 'RelClientesController@index')->name('relclientes.index');
+    Route::get('/geral','RelClientesController@geral')->name('relclientes.geral');
+    Route::post('/status','RelClientesController@status')->name('relclientes.status');
+});
+Route::group(['prefix' => '/relprodutos'], function () {
+    Route::get('/', 'RelProdutosController@index')->name('relprodutos.index');
+    Route::get('/estoque','RelProdutosController@estoque')->name('relprodutos.estoque');
+    Route::get('/geral','RelProdutosController@geral')->name('relprodutos.geral');
+    Route::post('/marca','RelProdutosController@marca')->name('relprodutos.marca');
+    Route::post('/montadora','RelProdutosController@montadora')->name('relprodutos.montadora');
+});
+Route::group(['prefix' => '/relfornecedores'], function () {
+    Route::get('/', 'RelFornecedoresController@index')->name('relfornecedores.index');
+    Route::get('/geral','RelFornecedoresController@geral')->name('relfornecedores.geral');
+});
+Route::group(['prefix' => '/relvendas'], function () {
+    Route::get('/', 'RelVendasController@index')->name('relvendas.index');
+    Route::get('/geral','RelVendasController@geral')->name('relvendas.geral');
+    Route::post('/cliente','RelVendasController@cliente')->name('relvendas.cliente');
+    Route::post('/funcionario','RelVendasController@funcionario')->name('relvendas.funcionario');
+    Route::post('/periodo','RelVendasController@periodo')->name('relvendas.periodo');
+});
+Route::group(['prefix' => '/relcompras'], function () {
+    Route::get('/', 'RelComprasController@index')->name('relcompras.index');
+    Route::get('/geral','RelComprasController@geral')->name('relcompras.geral');
+    Route::post('/fornecedor','RelComprasController@cliente')->name('relcompras.fornecedor');
+});
+Route::group(['prefix' => '/relpagamentos'], function () {
+    Route::get('/', 'RelPagamentosController@index')->name('relpagamentos.index');
+    Route::post('/periodo', 'RelPagamentosController@periodo')->name('relpagamentos.periodo');
+    Route::post('/atraso', 'RelPagamentosController@atraso')->name('relpagamentos.atraso');
+});
+Route::group(['prefix' => '/relrecebimentos'], function () {
+    Route::get('/', 'RelRecebimentosController@index')->name('relrecebimentos.index');
+    Route::post('/periodo', 'RelRecebimentosController@periodo')->name('relrecebimentos.periodo');
+    Route::post('/atraso', 'RelRecebimentosController@atraso')->name('relrecebimentos.atraso');
+});

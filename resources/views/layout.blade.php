@@ -119,14 +119,14 @@
                         Relatórios
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Clientes</a>
-                          <a class="dropdown-item" href="#">Fornecedores</a>
+                          <a class="dropdown-item" href="{{route('relclientes.index')}}">Clientes</a>
+                          <a class="dropdown-item" href="{{route('relfornecedores.index')}}">Fornecedores</a>
                           <a class="dropdown-item" href="{{route('relfuncionarios.index')}}">Funcionários</a>
-                          <a class="dropdown-item" href="#">Produtos</a>
-                          <a class="dropdown-item" href="#">Compras</a>
-                          <a class="dropdown-item" href="#">Vendas</a>
-                          <a class="dropdown-item" href="">Pagamentos</a>
-                          <a class="dropdown-item" href="#">Recebimentos</a>
+                          <a class="dropdown-item" href="{{route('relprodutos.index')}}">Produtos</a>
+                          <a class="dropdown-item" href="{{route('relcompras.index')}}">Compras</a>
+                          <a class="dropdown-item" href="{{route('relvendas.index')}}">Vendas</a>
+                          <a class="dropdown-item" href="{{route('relpagamentos.index')}}">Pagamentos</a>
+                          <a class="dropdown-item" href="{{route('relrecebimentos.index')}}">Recebimentos</a>
                         </div>
                     </li>
                     <li class="nav-item">

@@ -20,10 +20,12 @@ class RelFuncionariosController extends Controller
     public function geral()
     {
         $funcionarios = Funcionario::all();
-        foreach ($funcionarios as $funcionario)
+        $total = 0;
+        foreach ($funcionarios as $funcionario){
             $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
-
-        $data = ['funcionarios' => $funcionarios];
+            $total++;
+        }
+        $data = ['funcionarios' => $funcionarios, 'total' => $total];
         $pdf = PDF::loadView('relfuncionarios/geral', $data)->setPaper('a4','landscape');
 
         return $pdf->stream('geral.pdf');
@@ -33,10 +35,14 @@ class RelFuncionariosController extends Controller
     {
         $cargo = Cargo::findOrFail($request->cargo);
         $funcionarios = Funcionario::query()->where('cargo','=',$cargo->id)->select(['*'])->orderBy('id')->get();
-        foreach ($funcionarios as $funcionario)
-            $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
+        $total = 0;
 
-        $data = ['funcionarios' => $funcionarios, 'cargo' => $cargo];
+        foreach ($funcionarios as $funcionario){
+            $funcionario->cargo = Cargo::findOrFail($funcionario->cargo);
+            $total++;
+        }
+
+        $data = ['funcionarios' => $funcionarios, 'cargo' => $cargo, 'total' => $total];
         $pdf = PDF::loadView('relfuncionarios/cargo', $data)->setPaper('a4','landscape');
 
         return $pdf->stream('cargo.pdf');
